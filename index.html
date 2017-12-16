@@ -8,37 +8,36 @@
   <link rel="stylesheet" href="css/login.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/index.js"></script>
 </head>
 <body>
 
 <div class="container">
     
-    <div class="row" style="margin-top:20px">
+    <div class="row" style="margin-top:25vh">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
             <form role="form">
                 <fieldset>
                     <h2>Please Sign In</h2>
                     <hr class="colorgraph">
                     <div class="form-group">
-                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+                        <input type="hotel_username" name="hotel_username" id="hotel_username" class="form-control input-lg" placeholder="Hotel Username">
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
                     </div>
                     
                     <hr class="colorgraph">
-                    <div class="row">
+                    
+                </fieldset>
+            </form>
+            <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3">
-                            <input type="submit" class="btn btn-lg btn-success btn-block" value="Sign In">
+                            <button class="btn btn-lg btn-success btn-block">Sign In</button>
                         </div>
                         
                     </div>
-                </fieldset>
-            </form>
         </div>
-    </div>
-    <div class="row">
-        <a href="pages/views.html">After validation</a>
     </div>
 </div>
 
