@@ -3,5 +3,16 @@
     height: 5vh;
 }
 #titles {
-    margin-top: 10vh;
+    margin-top: 25vh;
+}
+#titles a{
+	color: black;
+}
+#titles img{
+	width: 70%;
+	height: auto;
+	opacity: 0.8;
+}
+#titles img:hover{
+	opacity: 1;
 }
