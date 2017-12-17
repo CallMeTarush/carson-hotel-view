@@ -1,12 +1,11 @@
 $(document).ready(function(){
     $("button").click(function(){
-    	alert("sure?");
-		$.ajax({
-		    url: "http://pgolecha.me:8383/hotel/delete_key",
-		    type: 'DELETE',
-		    success: function(result) {
-		    	alert("success");
-		    }
-		});
+        $.delete("http://pgolecha.me:8383/hotel/delete_key",
+        {
+          "room":$('#room_number').val()
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
     });
 });
