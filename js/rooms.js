@@ -30,7 +30,7 @@ function deleteRoom(click_index){
 }
 
 function checkin() {
-    roomno = document.getElementById("roomNo").value;
+    roomno = document.querySelector('#roomNo').value;
     
     $.post("http://pgolecha.me:8383/hotel/generate_key",
     {
