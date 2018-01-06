@@ -29,12 +29,11 @@ function deleteRoom(click_index){
 }
 
 function checkin() {
-    //var lolz = $('#roomNo');
-
+    var lolz = $('#roomNo');
 
     $.post("http://pgolecha.me:8383/hotel/generate_key",
     {
-        room: "123"
+        "room": lolz.val()
     },
     function(data, status){
         alert("Key generated:" + data);
