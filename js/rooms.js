@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    $.get("demo_test.asp", function(data, status){
+    $.get("http://pgolecha.me:8383/hotel/view_rooms", function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
     });
 
