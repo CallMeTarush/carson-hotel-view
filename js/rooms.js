@@ -30,12 +30,17 @@ function deleteRoom(click_index){
 
 function checkin() {
     var lolz = $('#roomNo');
-
-    $.post("http://pgolecha.me:8383/hotel/generate_key",
-    {
-        "room": lolz.val()
-    },
-    function(data, status){
-        alert("Key generated:" + data);
-    });   
+    
+    $.ajax({
+        type: 'POST',
+        // make sure you respect the same origin policy with this url:
+        // http://en.wikipedia.org/wiki/Same_origin_policy
+        url: 'http://pgolecha.me:8383/hotel/generate_key',
+        data: { 
+            'room': '123', 
+        },
+        success: function(msg){
+            alert(msg);
+        }
+    });
 }
