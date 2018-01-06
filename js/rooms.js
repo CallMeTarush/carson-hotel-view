@@ -24,4 +24,17 @@ $(document).ready(function(){
             alert("Data: " + data + "\nStatus: " + status);
         });
     }
+
+    function checkin() {
+        roomno = document.getElementById("roomNo").value;
+        
+        $.post("http://pgolecha.me:8383/hotel/generate_key",
+        {
+            room: roomno
+        },
+        function(data, status){
+            alert("Key generated:" + data);
+        });   
+    }
+    
 });
