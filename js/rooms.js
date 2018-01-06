@@ -17,7 +17,6 @@ $(document).ready(function(){
     
 });
 
-
 function deleteRoom(click_index){
         
     $.delete("http://pgolecha.me:8383/hotel/delete_key",
@@ -30,8 +29,9 @@ function deleteRoom(click_index){
 }
 
 function checkin() {
-    roomno = document.querySelector('#roomNo').value;
-    
+    //var lolz = $('#roomNo');
+
+
     $.post("http://pgolecha.me:8383/hotel/generate_key",
     {
         room: "123"
