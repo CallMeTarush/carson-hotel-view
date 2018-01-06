@@ -29,8 +29,9 @@ function deleteRoom(click_index){
 }
 
 function checkin() {
+    alert("Im here")
     var lolz = $('#roomNo');
-    
+
     $.ajax({
         type: 'POST',
         // make sure you respect the same origin policy with this url:
