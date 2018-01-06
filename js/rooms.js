@@ -9,13 +9,13 @@ $(document).ready(function(){
     for (i = 0; i < rooms.length; i++) {
         var index = i;
         var roomno = rooms[i];
-        var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><span class='glyphicon glyphicon-remove'></span></td></tr>";
+        var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom("index")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
         $("table tbody").append(markup);
     
     }   
 
-    $('#thetable').find('tr').click( function(){
-        click_index = ($(this).index()+1);
+    function deleteRoom(click_index){
+        
         $.delete("http://pgolecha.me:8383/hotel/delete_key",
         {
           "room": rooms[click_index]
@@ -23,5 +23,5 @@ $(document).ready(function(){
         function(data,status){
             alert("Data: " + data + "\nStatus: " + status);
         });
-    });
+    }
 });
