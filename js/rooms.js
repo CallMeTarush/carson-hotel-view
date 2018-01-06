@@ -30,7 +30,6 @@ function deleteRoom(click_index){
 
 function checkin() {
     var lolz = $('#roomNo');
-    alert("Im here" + lolz.val());
 
     $.ajax({
         type: 'POST',
@@ -38,7 +37,7 @@ function checkin() {
         // http://en.wikipedia.org/wiki/Same_origin_policy
         url: 'http://pgolecha.me:8383/hotel/generate_key',
         data: { 
-            'room': '123', 
+            'room': lolz.val() 
         },
         success: function(msg){
             alert(msg);
