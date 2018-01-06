@@ -29,8 +29,8 @@ function deleteRoom(click_index){
 }
 
 function checkin() {
-    alert("Im here")
     var lolz = $('#roomNo');
+    alert("Im here" + lolz.val());
 
     $.ajax({
         type: 'POST',
