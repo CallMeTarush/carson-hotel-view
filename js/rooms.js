@@ -34,7 +34,7 @@ function checkin() {
     
     $.post("http://pgolecha.me:8383/hotel/generate_key",
     {
-        room: 123
+        room: "123"
     },
     function(data, status){
         alert("Key generated:" + data);
