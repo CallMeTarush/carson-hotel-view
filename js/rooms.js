@@ -17,7 +17,11 @@ $(document).ready(function(){
         timeout: 120000,
     });    
 
-    rooms = data.rooms;
+    $.get("http://pgolecha.me:8383/hotel/view_rooms", function(data, status){
+        console.log(data);
+    });
+
+    //rooms = data.rooms;
 
     for (i = 0; i < rooms.length; i++) {
         var index = i;
