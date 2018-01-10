@@ -14,7 +14,7 @@ $(document).ready(function(){
             }
         });
 
-    console.log("help");
+
 
 
     for (i = 0; i < rooms.length; i++) {
