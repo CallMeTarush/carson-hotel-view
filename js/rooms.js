@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
     $.get("http://pgolecha.me:8383/hotel/view_rooms", function(data, status){
+        console.log(status);
+        console.log("hello?");
         console.log(data);
     });
 
