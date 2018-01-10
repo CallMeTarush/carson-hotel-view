@@ -1,5 +1,6 @@
 $(document).ready(function(){
     
+    var rooms; 
     $.ajax({
             url: "http://pgolecha.me:8383/hotel/view_rooms",
             // Handle as Text
@@ -10,24 +11,22 @@ $(document).ready(function(){
                 console.log("lmao1");
                 
                 var json = $.parseJSON(data);
-                var rooms = json.rooms;
-                console.log(rooms);
-                console.log("lmao");
-                //Store data into a variable
-                
-                for (i = 0; i < rooms.length; i++) {
-                    var index = i;
-                    var roomno = rooms[i].room;
-                    var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
-                    $("table tbody").append(markup);
-                
-                }
 
                 console.log("help");
                 console.log(json);
             }
         });
 
+        rooms = json.rooms;
+        console.log(rooms);
+        console.log("lmao");
+                
+        for (i = 0; i < rooms.length; i++) {
+            var index = i;
+            var roomno = rooms[i].room;
+            var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+            $("table tbody").append(markup);        
+        }
  
 
        
