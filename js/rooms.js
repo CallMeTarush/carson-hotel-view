@@ -12,13 +12,13 @@ $(document).ready(function(){
                 console.log("lmao1");
                 
                 var json = $.parseJSON(data);
+                rooms = json.rooms;
 
                 console.log("help");
                 console.log(json);
             }
         });
 
-        rooms = json.rooms;
         console.log(rooms);
         console.log("lmao");
                 
