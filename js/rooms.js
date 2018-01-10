@@ -5,8 +5,11 @@ $(document).ready(function(){
             // Handle as Text
             dataType: "text",
             success: function(data) {
+
                 // Parse JSON file
                 var json = $.parseJSON(data);
+                rooms = json.rooms;
+
                 //Store data into a variable
                 // Display Players
                 console.log("help");
@@ -14,8 +17,7 @@ $(document).ready(function(){
             }
         });
 
-    rooms = json.rooms;
-
+ 
 
     for (i = 0; i < rooms.length; i++) {
         var index = i;
