@@ -9,7 +9,7 @@ $(document).ready(function(){
                 // Parse JSON file
                 var json = $.parseJSON(data);
                 rooms = json.rooms;
-
+                console.log(rooms);
                 //Store data into a variable
                 
                 for (i = 0; i < rooms.length; i++) {
