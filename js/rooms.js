@@ -10,11 +10,12 @@ $(document).ready(function(){
                 var json = $.parseJSON(data);
                 rooms = json.rooms;
                 console.log(rooms);
+                console.log("lmao");
                 //Store data into a variable
                 
                 for (i = 0; i < rooms.length; i++) {
                     var index = i;
-                    var roomno = rooms[i];
+                    var roomno = rooms[i].room;
                     var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
                     $("table tbody").append(markup);
                 
