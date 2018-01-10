@@ -6,6 +6,7 @@ $(document).ready(function(){
         console.log(data);
     });
     
+    console.log("help");
     console.log(data);
 
     for (i = 0; i < rooms.length; i++) {
