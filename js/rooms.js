@@ -11,7 +11,15 @@ $(document).ready(function(){
                 rooms = json.rooms;
 
                 //Store data into a variable
-                // Display Players
+                
+                for (i = 0; i < rooms.length; i++) {
+                    var index = i;
+                    var roomno = rooms[i];
+                    var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+                    $("table tbody").append(markup);
+                
+                }
+
                 console.log("help");
                 console.log(json);
             }
@@ -19,13 +27,7 @@ $(document).ready(function(){
 
  
 
-    for (i = 0; i < rooms.length; i++) {
-        var index = i;
-        var roomno = rooms[i];
-        var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
-        $("table tbody").append(markup);
-    
-    }   
+       
 
     
 });
