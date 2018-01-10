@@ -7,6 +7,8 @@ $(document).ready(function(){
             success: function(data) {
 
                 // Parse JSON file
+                console.log("lmao1");
+                
                 var json = $.parseJSON(data);
                 var rooms = json.rooms;
                 console.log(rooms);
