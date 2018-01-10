@@ -1,6 +1,7 @@
+var rooms; 
 $(document).ready(function(){
     
-    var rooms; 
+
     $.ajax({
             url: "http://pgolecha.me:8383/hotel/view_rooms",
             // Handle as Text
