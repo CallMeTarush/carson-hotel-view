@@ -1,6 +1,7 @@
 $(document).ready(function(){
     
     $.getJSON("http://pgolecha.me:8383/hotel/view_rooms", function(result){
+        console.log("here");
         console.log(result);    
     });
   
