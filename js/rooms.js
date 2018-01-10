@@ -5,8 +5,8 @@ $(document).ready(function(){
         console.log("hello?");
         console.log(data);
     });
-
-    //rooms = data.rooms;
+    
+    console.log(data);
 
     for (i = 0; i < rooms.length; i++) {
         var index = i;
