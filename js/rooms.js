@@ -1,8 +1,21 @@
 $(document).ready(function(){
-    
-    $.get("http://pgolecha.me:8383/hotel/view_rooms", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
+
+    jQuery.ajax({
+        url: "http://pgolecha.me:8383/hotel/view_rooms",
+        type: "GET",
+
+        contentType: 'application/json; charset=utf-8',
+        success: function(resultData) {
+            console.log(resultData);
+            data = resultData;
+            console.log(data);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log("oops");
+        },
+
+        timeout: 120000,
+    });    
 
     rooms = data.rooms;
 
