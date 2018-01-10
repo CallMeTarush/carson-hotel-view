@@ -14,7 +14,7 @@ $(document).ready(function(){
             }
         });
 
-
+    rooms = json.rooms;
 
 
     for (i = 0; i < rooms.length; i++) {
