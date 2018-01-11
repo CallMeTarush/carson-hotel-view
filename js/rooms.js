@@ -3,18 +3,13 @@ $(document).ready(function(){
     var rooms; 
     $.get("http://pgolecha.me:8383/hotel/view_rooms",function(data,status) {
                 rooms = data.rooms;
-            });
-
-        console.log(rooms);
-        console.log("lmao");
-                
-        for (i = 0; i < rooms.length; i++) {
+                 for (i = 0; i < rooms.length; i++) {
             var index = i;
             var roomno = rooms[i].room;
             var markup = "<tr><td>" + index + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
             $("table tbody").append(markup);        
         }
- 
+            });
 
        
 
