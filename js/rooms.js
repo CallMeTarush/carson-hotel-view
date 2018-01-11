@@ -2,22 +2,9 @@ var rooms;
 $(document).ready(function(){
     
 
-    $.ajax({
-            url: "http://pgolecha.me:8383/hotel/view_rooms",
-            // Handle as Text
-            dataType: "text",
-            success: function(data) {
-
-                // Parse JSON file
-                console.log("lmao1");
-                
-                var json = $.parseJSON(data);
-                rooms = json.rooms;
-
-                console.log("help");
-                console.log(json);
-            }
-        });
+    $.get("http://pgolecha.me:8383/hotel/view_rooms",function(data,status) {
+                rooms = data.rooms;
+            });
 
         console.log(rooms);
         console.log("lmao");
