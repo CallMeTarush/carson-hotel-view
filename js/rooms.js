@@ -35,9 +35,7 @@ function checkin() {
         // http://en.wikipedia.org/wiki/Same_origin_policy
         url: 'http://pgolecha.me:8383/hotel/generate_key',
         data: { 
-            {
-                'room':lolz.val()
-            }
+            'room':lolz.val()
         },
         success: function(msg){
             alert(msg);
