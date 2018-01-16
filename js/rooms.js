@@ -17,13 +17,17 @@ $(document).ready(function(){
 });
 
 function deleteRoom(click_index){
-    
-    $.delete("http://pgolecha.me:8383/hotel/delete_key",
-    {
-      "room": rooms[click_index]
-    },
-    function(data,status){
-        alert("Data: " + data + "\nStatus: " + status);
+    console.log(click_index);
+    $.ajax({
+        url: 'http://pgolecha.me:8383/hotel/delete_key',
+        type: 'DELETE',
+        data: {
+            "room": rooms[click_index]
+        },
+        contentType:'application/json',  
+        dataType: 'text',               
+        success: function(result) {alert("deleted!")},
+        error: function(result){"error!"}
     });
 }
 
