@@ -1,6 +1,8 @@
+
+var rooms; 
+
 $(document).ready(function(){
     
-    var rooms; 
     $.get("http://pgolecha.me:8383/hotel/view_rooms",function(data,status) {
                 rooms = data.rooms;
                  for (i = 0; i < rooms.length; i++) {
