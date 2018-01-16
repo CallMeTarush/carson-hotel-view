@@ -29,18 +29,15 @@ function deleteRoom(click_index){
 
 function checkin() {
     var lolz = $('#roomNo');
-    console.log(lolz);
-    var data_to_post = [{'room': lolz.val()}];
-    console.log(data_to_post);
-    data_to_post = JSON.stringify(data_to_post);
-
     $.ajax({
         type: 'POST',
         // make sure you respect the same origin policy with this url:
         // http://en.wikipedia.org/wiki/Same_origin_policy
         url: 'http://pgolecha.me:8383/hotel/generate_key',
         data: { 
-            data_to_post
+            {
+                'room':lolz.val()
+            }
         },
         success: function(msg){
             alert(msg);
