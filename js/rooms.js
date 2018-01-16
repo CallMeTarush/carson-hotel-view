@@ -31,12 +31,11 @@ function checkin() {
     var lolz = $('#roomNo');
     $.ajax({
         type: 'POST',
-        // make sure you respect the same origin policy with this url:
-        // http://en.wikipedia.org/wiki/Same_origin_policy
         url: 'http://pgolecha.me:8383/hotel/generate_key',
         data: { 
             'room':lolz.val()
         },
+        dataType: "json",
         success: function(msg){
             alert(msg);
         }
