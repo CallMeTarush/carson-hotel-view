@@ -19,7 +19,7 @@ $(document).ready(function(){
 });
 
 function deleteRoom(click_index){
-    console.log(click_index);
+    console.log(rooms[click_index]);
     $.ajax({
         url: 'http://pgolecha.me:8383/hotel/delete_key',
         type: 'DELETE',
