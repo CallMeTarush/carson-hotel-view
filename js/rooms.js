@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 
 function deleteRoom(click_index){
-        
+    
     $.delete("http://pgolecha.me:8383/hotel/delete_key",
     {
       "room": rooms[click_index]
@@ -29,6 +29,10 @@ function deleteRoom(click_index){
 
 function checkin() {
     var lolz = $('#roomNo');
+    console.log(lolz);
+    var data_to_post = [{'room': lolz.val()}];
+    console.log(data_to_post);
+    data_to_post = JSON.stringify(data_to_post);
 
     $.ajax({
         type: 'POST',
@@ -36,7 +40,7 @@ function checkin() {
         // http://en.wikipedia.org/wiki/Same_origin_policy
         url: 'http://pgolecha.me:8383/hotel/generate_key',
         data: { 
-            'room': lolz.val() 
+            data_to_post
         },
         success: function(msg){
             alert(msg);
