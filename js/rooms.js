@@ -27,7 +27,7 @@ function deleteRoom(click_index){
             "room": rooms[click_index].room
         },
         contentType:'application/json',  
-        dataType: 'text',               
+        dataType: 'json',               
         success: function(result) {alert("deleted!")},
         error: function(result){"error!"}
     });
