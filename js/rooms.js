@@ -29,12 +29,14 @@ function deleteRoom(click_index){
 
 function checkin() {
     var lolz = $('#roomNo');
+    var data_to_send = { 
+        'room':lolz.val()
+    };
+    console.log(data_to_send);
     $.ajax({
         type: 'POST',
         url: 'http://pgolecha.me:8383/hotel/generate_key',
-        data: { 
-            'room':lolz.val()
-        },
+        data: JSON.stringify(data_to_send),
         dataType: "json",
         success: function(msg){
             alert(msg);
