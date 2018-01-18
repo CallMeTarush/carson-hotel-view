@@ -1,9 +1,18 @@
+h1 {
+	font-size: 7rem;
+}
 .row {
     text-align: center;
     height: 5vh;
 }
 #titles {
-    margin-top: 25vh;
+    margin-top: 15vh;
+}
+.title {
+    border-style: solid;
+    border-radius: 10px;
+    height: 100%;
+    padding: 10px 0;
 }
 #titles a{
 	color: black;
@@ -15,4 +24,7 @@
 }
 #titles img:hover{
 	opacity: 1;
+}
+#Carson {
+	margin-top: 10vh;	
 }

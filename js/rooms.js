@@ -5,6 +5,9 @@ $(document).ready(function(){
 });
 
 function getRooms() {
+    
+    $("table tr").remove(); 
+    
     $.get("http://pgolecha.me:8383/hotel/view_rooms",function(data,status) {
         rooms = data.rooms;
         for (i = 0; i < rooms.length; i++) {
@@ -17,8 +20,9 @@ function getRooms() {
 }
 
 function deleteRoom(click_index){
-    console.log(rooms[click_index].room);
     
+
+
     var data_to_send = { 
         'room':rooms[click_index].room
     };
