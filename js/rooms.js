@@ -32,11 +32,11 @@ function deleteRoom(click_index){
         type: 'DELETE',
         data: JSON.stringify(data_to_send),
         dataType: 'json',               
-        success: function(result) {alert("deleted!")},
-        error: function(result){"error!"}
+        success: function(result) { getRooms(); },
+        error: function(result){ alert("error!") }
     });
 
-    getRooms();
+    
 }
 
 function checkin() {
@@ -52,9 +52,9 @@ function checkin() {
         data: JSON.stringify(data_to_send),
         dataType: "json",
         success: function(msg){
-            ;
+            getRooms();
         }
     });
 
-    getRooms();
+
 }
