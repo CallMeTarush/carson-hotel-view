@@ -8,7 +8,7 @@ function getRooms() {
     
     $("table tr").remove(); 
     
-    $.get("http://pgolecha.me:8383/hotel/view_rooms",function(data,status) {
+    $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
         rooms = data.rooms;
         for (i = 0; i < rooms.length; i++) {
             var index = i;
@@ -28,7 +28,7 @@ function deleteRoom(click_index){
     };
 
     $.ajax({
-        url: 'http://pgolecha.me:8383/hotel/delete_key',
+        url: 'http://139.59.13.33:8383/hotel/delete_key',
         type: 'DELETE',
         data: JSON.stringify(data_to_send),
         dataType: 'json',               
@@ -48,7 +48,7 @@ function checkin() {
     console.log(data_to_send);
     $.ajax({
         type: 'POST',
-        url: 'http://pgolecha.me:8383/hotel/generate_key',
+        url: 'http://139.59.13.33:8383/hotel/generate_key',
         data: JSON.stringify(data_to_send),
         dataType: "json",
         success: function(msg){

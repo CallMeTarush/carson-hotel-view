@@ -1,0 +1,41 @@
+[debug] [2018-02-17T15:19:35.124Z] ----------------------------------------------------------------------
+[debug] [2018-02-17T15:19:35.126Z] Command:       /home/tarush/.nvm/versions/node/v8.9.4/bin/node /usr/local/bin/firebase serve
+[debug] [2018-02-17T15:19:35.126Z] CLI Version:   3.17.4
+[debug] [2018-02-17T15:19:35.126Z] Platform:      linux
+[debug] [2018-02-17T15:19:35.126Z] Node Version:  v8.9.4
+[debug] [2018-02-17T15:19:35.126Z] Time:          Sat Feb 17 2018 15:19:35 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:35.126Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-02-17T15:19:35.133Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-02-17T15:19:35.133Z] > authorizing via signed-in user
+[debug] [2018-02-17T15:19:35.135Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-02-17T15:19:35.135Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/Nj8N5AvZ2oE_UK9iykluLoCIT2MgLp_ZCUP4gi6C2XtmY7KyyIfu50GXSsJFNZ53',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Feb 17 2018 15:19:35 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:35.316Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-17T15:19:35.323Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/carson-ed4aa  
+  
+ Sat Feb 17 2018 15:19:35 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:36.515Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-17T15:19:36.517Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/carson-ed4aa/tokens  
+  
+ Sat Feb 17 2018 15:19:36 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:37.652Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/tarush/Projects/carson-hotel-view'...
+[info] 
+[debug] [2018-02-17T15:19:37.656Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/carson-ed4aa  
+  
+ Sat Feb 17 2018 15:19:37 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:39.096Z] <<< HTTP RESPONSE 200
+[debug] [2018-02-17T15:19:39.097Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1042607038662/clients/_:getWebAppConfig  
+  
+ Sat Feb 17 2018 15:19:39 GMT+0000 (GMT)
+[debug] [2018-02-17T15:19:39.800Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: ./
+[info] ✔  hosting: Local server: http://localhost:5000
+

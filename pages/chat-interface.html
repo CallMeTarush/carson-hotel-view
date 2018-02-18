@@ -5,13 +5,37 @@
   <title>Carson</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="../manifest.json">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/chat-interface.css">
   <!-- Font Awesome File -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDm60EJPK9e70fhs42w8yLLbNJxNFrCjUY",
+      authDomain: "carson-ed4aa.firebaseapp.com",
+      databaseURL: "https://carson-ed4aa.firebaseio.com",
+      projectId: "carson-ed4aa",
+      storageBucket: "carson-ed4aa.appspot.com",
+      messagingSenderId: "1042607038662"
+    };
+    firebase.initializeApp(config);
+
+     
+  </script>
+  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/chat-interface.js"></script>
+  <script src="../js/chat-interface.js"></script>
+
+
 </head>
 
 <body>
@@ -49,8 +73,8 @@
 
           <!-- Search Box End -->
           <!-- sideBar -->
-          <div class="row sideBar">
-            <div class="row sideBar-body">
+          <div class="row sideBar"  id="roomNumbers">
+            <!-- <div class="row sideBar-body">
               <div class="col-sm-3 col-xs-3 sideBar-avatar">
                 <div class="avatar-icon">
                   <img src="http://shurl.esy.es/y">
@@ -59,188 +83,19 @@
               <div class="col-sm-9 col-xs-9 sideBar-main">
                 <div class="row">
                   <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
+                    <span class="name-meta">
+                      Room 123
+                    </span>
                   </div>
                   <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
+                    <span class="time-meta pull-right">
+                      18:18
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row sideBar-body">
-              <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
-                </div>
-              </div>
-              <div class="col-sm-9 col-xs-9 sideBar-main">
-                <div class="row">
-                  <div class="col-sm-8 col-xs-8 sideBar-name">
-                    <span class="name-meta">Room 123
-                  </span>
-                  </div>
-                  <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                    <span class="time-meta pull-right">18:18
-                  </span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <!-- Sidebar End -->
         </div>
@@ -275,7 +130,7 @@
             <div class="row sideBar-body">
               <div class="col-sm-3 col-xs-3 sideBar-avatar">
                 <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
+                  <!-- <img src="http://shurl.esy.es/y"> -->
                 </div>
               </div>
               <div class="col-sm-9 col-xs-9 sideBar-main">
@@ -314,7 +169,7 @@
             <div class="row sideBar-body">
               <div class="col-sm-3 col-xs-3 sideBar-avatar">
                 <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
+                  <!-- <img src="http://shurl.esy.es/y"> -->
                 </div>
               </div>
               <div class="col-sm-9 col-xs-9 sideBar-main">
@@ -490,15 +345,15 @@
         <!-- Message Box -->
         <div class="row message" id="conversation">
 
-          <div class="row message-previous">
+          <!-- <div class="row message-previous">
             <div class="col-sm-12 previous">
               <a onclick="previous(this)" id="ankitjain28" name="20">
               Show Previous Message!
               </a>
             </div>
-          </div>
+          </div> -->
 
-          <div class="row message-body">
+          <!-- <div class="row message-body">
             <div class="col-sm-12 message-main-receiver">
               <div class="receiver">
                 <div class="message-text">
@@ -522,7 +377,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- Message Box End -->
 
@@ -539,7 +394,7 @@
         </div>
         <!-- Reply Box End -->
       </div>
-      <!-- Conversation End -->
+      <!-- 0ion End -->
     </div>
     <!-- App One End -->
   </div>

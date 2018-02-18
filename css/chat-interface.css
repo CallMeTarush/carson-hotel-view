@@ -1,3 +1,7 @@
+.selected {
+  background: #eee !important;
+}
+
 html,
 body,
 div,
