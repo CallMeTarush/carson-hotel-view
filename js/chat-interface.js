@@ -47,9 +47,9 @@ function init() {
         document.getElementById("display-room").innerHTML=user_details.room_number;
         scrollDown();
       }  
-      
+      if(width>=768) {
       $('#chat-selected-1').addClass('selected');
-
+      }
     }
 
     current = x;
@@ -64,6 +64,7 @@ function init() {
 function loadChat(counter_details) {
   
   if(width<768) {
+    $('.selected').removeClass('selected');
     $('#the-left-side').removeClass('col-xs-12');
     $("#the-left-side").css("display", "none"); 
     $('#the-right-side').addClass('col-xs-12');
@@ -73,7 +74,7 @@ function loadChat(counter_details) {
   else {
     $('.selected').removeClass('selected');
     $('#chat-selected-'+ counter_details).addClass('selected');
-
+  }
     document.getElementById("conversation").innerHTML='';
     
     x = snap.user_list[counter_details];
@@ -92,7 +93,7 @@ function loadChat(counter_details) {
    
     }
 
-  }
+  
   
   
   scrollDown();
