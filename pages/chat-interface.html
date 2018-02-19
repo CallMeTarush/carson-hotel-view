@@ -15,6 +15,7 @@
 
 
   <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+  
   <script>
     // Initialize Firebase
     var config = {
@@ -26,17 +27,11 @@
       messagingSenderId: "1042607038662"
     };
     firebase.initializeApp(config);
-
-      
-     
   </script>
   
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="../js/chat-interface.js"></script>
-
-
 </head>
 
 <body>
@@ -44,7 +39,7 @@
   <div class="container app">
     <div class="row app-one">
 
-      <div class="col-sm-4 side">
+      <div class="col-sm-4 col-xs-12 side" id="the-left-side">
         <div class="side-one">
           <!-- Heading -->
           <div class="row heading">
@@ -66,8 +61,8 @@
           <div class="row searchBox">
             <div class="col-sm-12 searchBox-inner">
               <div class="form-group has-feedback">
-                <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
-                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                <input id="searchText" type="text" class="form-control col-xs-8" name="searchText" placeholder="Search">
+                <span class="glyphicon glyphicon-search form-control-feedback col-xs-4"></span>
               </div>
             </div>
           </div>
@@ -132,7 +127,7 @@
             <div class="row sideBar-body">
               <div class="col-sm-3 col-xs-3 sideBar-avatar">
                 <div class="avatar-icon">
-                  <img src="http://shurl.esy.es/y">
+                  <!-- <img src="http://shurl.esy.es/y"> -->
                 </div>
               </div>
               <div class="col-sm-9 col-xs-9 sideBar-main">
@@ -157,13 +152,18 @@
       <!-- New Message Sidebar End -->
 
       <!-- Conversation Start -->
-      <div class="col-sm-8 conversation">
+      <div class="col-sm-8 conversation" id="the-right-side">
         <!-- Heading -->
         <div class="row heading">
           
+          <div class="col-sm-2 col-xs-2" id="back-arrow" onclick="backPressed()">
+              <i class="fa fa-arrow-left fa-2x pull-left"></i>
+          </div>
+
           <div class="col-sm-8 col-xs-7 heading-name">
-            <a class="heading-name-meta" id="display-room">
-            </a>
+              
+            <p class="heading-name-meta" id="display-room">
+            </p>
             
           </div>
           <div class="col-sm-1 col-xs-1  heading-dot pull-right">

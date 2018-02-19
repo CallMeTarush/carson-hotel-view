@@ -1,7 +1,6 @@
 .selected {
   background: #eee !important;
 }
-
 html,
 body,
 div,
@@ -469,8 +468,10 @@ body {
   text-indent: 5px;
   box-shadow: none;
 }
-
- @media screen and (max-width: 700px) {
+#back-arrow {
+  display: none;
+}
+ @media screen and (max-width: 768px) {
   html,
   body,
   div,
@@ -478,7 +479,11 @@ body {
     overflow-x: auto !important;
   }
 
-/*  .app {
+  #back-arrow {
+    display: block;
+  } 
+
+  .app {
     top: 0;
     height: 100%;
   }
@@ -550,14 +555,14 @@ body {
     vertical-align: baseline;
   }
   /*Conversation*/
-  /*.conversation {
+  .conversation {
     padding: 0 !important;
     margin: 0 !important;
     height: 100%;
     /*width: 100%;*/
     /* border-left: 1px solid rgba(0, 0, 0, .08); */
     /*overflow-y: auto;*/
-  /* }
+  }
   .message {
     height: calc(100% - 140px);
   }
@@ -595,5 +600,5 @@ body {
 }
 .sideBar-avatar {
     visibility: hidden;
-} */ 
+}  
 }
