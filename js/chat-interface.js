@@ -11,12 +11,16 @@
 // });
 
 // var type_of_hotel_user = "reception";
+window.current = '';
 
 var hotelDatabase = firebase.database().ref('hotel/1');
 hotelDatabase.on('value', function(snapshot) {
 
+  document.getElementById("roomNumbers").innerHTML='';
+  document.getElementById("conversation").innerHTML='';
+
   window.snap = snapshot.val();
-  // console.log(snap);
+  console.log(snap);
   user_id_list = snap.user_list;
   len = user_id_list.length;
 
@@ -26,6 +30,7 @@ hotelDatabase.on('value', function(snapshot) {
     x = snap.user_list[i];
     user_details = snap[x];
 
+    console.log(i);
     var latest_timestamp = user_details.chats.reception[user_details.chats.reception.length-1].datetime;
     var latest_time = latest_timestamp.substring(11,16);
 
@@ -114,7 +119,7 @@ hotelDatabase.on('value', function(snapshot) {
     }  
   }
 
-    
+  current = x;
 });
 
 function loadChat(counter_details) {
@@ -125,9 +130,11 @@ function loadChat(counter_details) {
     document.getElementById("conversation").innerHTML='';
     
     x = snap.user_list[counter_details];
+    current = x;
     user_details = snap[x];
     chats = user_details.chats.reception;
     
+    console.log(chats);
     
     for (var j = 0, len_2 = chats.length; j < len_2; j++) {
       var chat_timestamp = chats[j].datetime;
@@ -170,3 +177,21 @@ function loadChat(counter_details) {
     }
 }
 
+function sendMessage() {
+
+  console.log(current);
+
+  var d = new Date();
+  var date = d.toISOString();
+  var message_send = document.getElementById("comment").value;
+
+  user_details = snap[x];
+  if(message_send!='') {
+    var msgObject = { datetime: date, message: message_send, sender: 1};
+    console.log(msgObject);
+    firebase.database().ref('/hotel/1/'+ current +'/chats/reception/').push(msgObject);
+  }
+  else {
+    ;
+  }
+}
