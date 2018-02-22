@@ -153,6 +153,7 @@ function addMessageText(message,timestamp,sender) {
 function sendMessage() {
 
   // console.log(current);
+  
 
   console.log();
   var date = firebase.database.ServerValue.TIMESTAMP;
@@ -182,7 +183,7 @@ function sendMessage() {
       addMessageText(chats[j].message,chat_timestamp,chats[j].sender);
 
     }
-
+    document.getElementById("comment").value = "";
     scrollDown();
   }
   
@@ -210,6 +211,9 @@ function backPressed() {
 
 
 hotelDatabase.on('value', function(snapshot) {
+  
+  console.log("value changed");
+  
   document.getElementById("roomNumbers").innerHTML='';
   
   window.snap = snapshot.val();
@@ -240,4 +244,41 @@ hotelDatabase.on('value', function(snapshot) {
     </div>`;
       
   }
+
+  document.getElementById("conversation").innerHTML='';
+    
+    // x = snap.user_list[counter_details];
+    
+    // current = x;
+    user_details = snap[x];
+    chats = user_details.chats.reception;
+    
+    console.log(user_details.room_number);
+    document.getElementById("display-room").innerHTML=user_details.room_number;
+
+    for (const j of Object.keys(chats)) {
+   
+      var chat_timestamp = chats[j].datetime;
+      addMessageText(chats[j].message,chat_timestamp,chats[j].sender);      
+   
+    }
+
+  
+  
+  
+  scrollDown();
+
 });
+
+function checkEnter() {
+  var key = window.event.keyCode;
+
+  if (key === 13) {
+      sendMessage();
+      return false;
+  }
+  else {
+      return true;
+  }
+
+}
