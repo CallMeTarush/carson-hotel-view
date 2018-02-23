@@ -15,7 +15,7 @@
 
 
   <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -39,7 +39,7 @@
   <div class="container app">
     <div class="row app-one">
 
-      <div class="col-sm-4 col-xs-12 side" id="the-left-side">
+      <div class="col-sm-4 col-md-2 col-xs-12 side" id="the-left-side">
         <div class="side-one">
           <!-- Heading -->
           <div class="row heading">
@@ -152,7 +152,7 @@
       <!-- New Message Sidebar End -->
 
       <!-- Conversation Start -->
-      <div class="col-sm-8 conversation" id="the-right-side">
+      <div class="col-sm-4 col-md-5 conversation" id="the-right-side">
         <!-- Heading -->
         <div class="row heading">
           
@@ -225,7 +225,47 @@
         </div>
         <!-- Reply Box End -->
       </div>
+
       <!-- 0ion End -->
+      
+      <!-- Controller Start -->
+      <div class="col-sm-4 bhenchod col-md-5" style="height:100%; padding: 0;">
+        <!-- Heading -->
+        <div class="row heading">
+            <center>
+              <b>Orders</b>
+            </center>
+        </div>
+        <!-- Heading End -->
+        <div class="row message" id="tasks">
+          
+
+          <div class="row task-body">
+            
+              <div class="task-room">
+                G-01
+              </div>
+
+              <div class="task-request">
+                2 Margherita Pizza's
+              </div>
+
+              <div class="task-time">
+                22/02 17:56
+              </div>
+
+            
+          </div>
+
+          <div class="row task-body">
+            
+              <center>Sup</center>
+
+          </div>      
+        </div>
+      
+      </div>
+      <!-- Controller End -->
     </div>
     <!-- App One End -->
   </div>

@@ -1,6 +1,20 @@
 .selected {
   background: #eee !important;
 }
+
+.task-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 80%;
+  height: auto;
+
+  margin-left: 10% !important;
+  margin-bottom: 2% !important;
+  margin-top: 2% !important;
+  padding: 2.5% !important;
+  border: solid;
+  border-radius: 10px;
+}
 html,
 body,
 div,
@@ -471,6 +485,14 @@ body {
 #back-arrow {
   display: none;
 }
+@media screen and (min-width: 1200px) {
+
+  .container {
+    width: 100vw !important;
+  }
+
+}
+
  @media screen and (max-width: 768px) {
   html,
   body,

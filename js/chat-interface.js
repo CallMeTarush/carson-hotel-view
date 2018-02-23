@@ -2,6 +2,8 @@ window.width = $(window).width();
 
 
 window.current = '';
+window.snap = '';
+window.checker = 0;
 var hotelDatabase = firebase.database().ref('hotel/1');
 
 function init() {
@@ -13,7 +15,7 @@ function init() {
     document.getElementById("roomNumbers").innerHTML='';
     document.getElementById("conversation").innerHTML='';
 
-    window.snap = snapshot.val();
+    snap = snapshot.val();
     user_id_list = snap.user_list;
     len = user_id_list.length;
 
@@ -62,7 +64,7 @@ function init() {
   
 }
 function loadChat(counter_details) {
-  
+  console.log(width);
   if(width<768) {
     $('.selected').removeClass('selected');
     $('#the-left-side').removeClass('col-xs-12');
@@ -83,7 +85,7 @@ function loadChat(counter_details) {
     user_details = snap[x];
     chats = user_details.chats.reception;
     
-    console.log(user_details.room_number);
+    // console.log(user_details.room_number);
     document.getElementById("display-room").innerHTML=user_details.room_number;
 
     for (const j of Object.keys(chats)) {
@@ -94,7 +96,7 @@ function loadChat(counter_details) {
     }
 
   
-  
+  console.log(current);
   
   scrollDown();
 
@@ -112,7 +114,7 @@ function addMessageText(message,timestamp,sender) {
   var chat_day = formatedTime.substring(8,10);
   var chat_month = formatedTime.substring(5,7);
 
-  console.log(chat_time,chat_day,chat_month);
+  // console.log(chat_time,chat_day,chat_month);
   
   if(sender == 0) {
     
@@ -126,7 +128,7 @@ function addMessageText(message,timestamp,sender) {
             <span class="message-time pull-right">
             `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
             </span>
-        </div>0
+        </div>
         </div>
     </div>`;
 
@@ -152,10 +154,9 @@ function addMessageText(message,timestamp,sender) {
 
 function sendMessage() {
 
-  // console.log(current);
   
 
-  console.log();
+  // console.log();
   var date = firebase.database.ServerValue.TIMESTAMP;
   var message_send = document.getElementById("comment").value;
   
@@ -165,7 +166,7 @@ function sendMessage() {
 
   else {
     var msgObject = { datetime: date, message: message_send, sender: 1};
-    console.log(msgObject,current);
+    
 
     firebase.database().ref('/hotel/1/'+ current +'/chats/reception/').push(msgObject);
 
@@ -186,7 +187,8 @@ function sendMessage() {
     document.getElementById("comment").value = "";
     scrollDown();
   }
-  
+
+  checker += 1;
 
 }
 
@@ -199,6 +201,7 @@ function scrollDown() {
 }
 
 init();
+
 function backPressed() {
   $('#the-right-side').removeClass('col-xs-12');
   $("#the-right-side").css("display", "none"); 
@@ -209,66 +212,94 @@ function backPressed() {
 }
 
 
-
-hotelDatabase.on('value', function(snapshot) {
-  
-  console.log("value changed");
-  
-  document.getElementById("roomNumbers").innerHTML='';
-  
-  window.snap = snapshot.val();
-  user_id_list = snap.user_list;
-  len = user_id_list.length;
-
-  
-  for (var i = len-1 ; i >= 0 ; i--) {
+if(checker>0) {
+  console.log(checker);
+  hotelDatabase.on('value', function(snapshot) {
     
-    document.getElementById("roomNumbers").innerHTML+='';
+    console.log("value changed");
+    console.log(current);
+    console.log("value changed");
+    
+    document.getElementById("roomNumbers").innerHTML='';
+  
+    user_details = snap[current];
+    
+    chats_check = user_details.chats.reception;
+  
+    window.snap = snapshot.val();
+    user_id_list = snap.user_list;
+    len = user_id_list.length;
 
-    x = snap.user_list[i];
-    user_details = snap[x];
+    // user_details = snap[x];
+    // chats = user_details.chats.reception;
+
+    console.log(chats);
+
+    user_details = snap[current];
     chats = user_details.chats.reception;
+  
     
-    document.getElementById("roomNumbers").innerHTML+=`
-    <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
-      <div class="col-sm-9 col-xs-9 sideBar-main">
-        <div class="row">
-          <div class="col-sm-8 col-xs-8 sideBar-name">
-            <span class="name-meta">
-              ` + user_details.room_number + `
-            </span>
-          </div>
-          
-        </div>
-      </div>
-    </div>`;
+    
+    console.log("chec");
+    console.log(chats);
+    console.log(current);
+    
+    console.log(chats_check);
+    console.log("chec");
+
+    console.log(_.isEqual(chats, chats_check));
+    if(_.isEqual(chats, chats_check)) {
+      console.log("here");
+    }
+    else {
+      console.log("here?");
+      document.getElementById("conversation").innerHTML='';
       
-  }
+      // x = snap.user_list[counter_details];
+      
+      // current = x;
+      user_details = snap[x];
+      chats = user_details.chats.reception;
+      
+      // console.log(user_details.room_number);
+      document.getElementById("display-room").innerHTML=user_details.room_number;
 
-  document.getElementById("conversation").innerHTML='';
+      for (const j of Object.keys(chats)) {
     
-    // x = snap.user_list[counter_details];
+        var chat_timestamp = chats[j].datetime;
+        addMessageText(chats[j].message,chat_timestamp,chats[j].sender);      
     
-    // current = x;
-    user_details = snap[x];
-    chats = user_details.chats.reception;
+      }
     
-    console.log(user_details.room_number);
-    document.getElementById("display-room").innerHTML=user_details.room_number;
-
-    for (const j of Object.keys(chats)) {
-   
-      var chat_timestamp = chats[j].datetime;
-      addMessageText(chats[j].message,chat_timestamp,chats[j].sender);      
-   
+      scrollDown();
     }
 
-  
-  
-  
-  scrollDown();
+    for (var i = len-1 ; i >= 0 ; i--) {
+      
+      document.getElementById("roomNumbers").innerHTML+='';
 
-});
+      x = snap.user_list[i];
+      user_details = snap[x];
+      
+      
+      document.getElementById("roomNumbers").innerHTML+=`
+      <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
+        <div class="col-sm-9 col-xs-9 sideBar-main">
+          <div class="row">
+            <div class="col-sm-8 col-xs-8 sideBar-name">
+              <span class="name-meta">
+                ` + user_details.room_number + `
+              </span>
+            </div>
+            
+          </div>
+        </div>
+      </div>`;
+        
+    }
+
+  });
+}
 
 function checkEnter() {
   var key = window.event.keyCode;
