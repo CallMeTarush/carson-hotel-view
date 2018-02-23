@@ -4,6 +4,7 @@ window.width = $(window).width();
 window.current = '';
 window.snap = '';
 window.checker = 0;
+window.done_id = '';
 var hotelDatabase = firebase.database().ref('hotel/1');
 
 function init() {
@@ -39,44 +40,104 @@ function init() {
         </div>
       </div>`;
       
-      if(i==len-1) {
-        for (const j of Object.keys(chats)) {
-          
-          var chat_timestamp = chats[j].datetime;
-          addMessageText(chats[j].message,chat_timestamp,chats[j].sender);
+      loadTasks(user_details);
 
-        } 
-        document.getElementById("display-room").innerHTML=user_details.room_number;
-        scrollDown();
-      }  
+      done_id = x;
+
+      for (const j of Object.keys(chats)) {
+   
+        if(chats[j].sender==2) {
+
+          var task = { 
+            name:"Tarush", 
+            room_number:50, 
+            request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+            additional_comments:"Sup",
+            date_time:"07:46 PM 23/02/2018"
+          };
+
+          var chat_timestamp = chats[j].datetime;
+          var myDate = new Date(chat_timestamp);
+          var formatedTime=myDate.toJSON();
+
+          
+          var to_send = JSON.stringify(chats[j]);
+            
+          var chat_time = formatedTime.substring(11,16);
+          var chat_day = formatedTime.substring(8,10);
+          var chat_month = formatedTime.substring(5,7);
+
+          console.log("hello?");
+          
+
+          document.getElementById("tasks").innerHTML += `
+          <div class="task col-sm-10 col-sm-offset-1">
+            
+              <div class="row task-body col-sm-7 col-sm-offset-1">
+                
+                  <div class="task-room">
+                    ` + task.room_number + `            
+                  </div>
+
+                  <div class="task-request">
+                  ` + task.request + `
+                  </div>
+
+                  <div class="task-time">
+                  `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+
+                  </div>
+    
+              </div>
+
+              <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
+                Done
+              </div>
+
+          </div>
+          `;
+          
+
+        }
+        
+      }
+
       if(width>=768) {
       $('#chat-selected-1').addClass('selected');
       }
+      $('#chat-selected-1').addClass('check-selected');
     }
 
-    current = x;
+    loadChat(len-1);
+
   });
 
-  
-
-
-  console.log("gello");
-  
+  // console.log("gello");  
 }
 function loadChat(counter_details) {
-  console.log(width);
+  // console.log(width);
   if(width<768) {
     $('.selected').removeClass('selected');
+    
     $('#the-left-side').removeClass('col-xs-12');
     $("#the-left-side").css("display", "none"); 
     $('#the-right-side').addClass('col-xs-12');
     $('#the-right-side').css("display","block");
-    console.log("fuck");
+    // console.log("fuck");
+    
   }
   else {
     $('.selected').removeClass('selected');
     $('#chat-selected-'+ counter_details).addClass('selected');
   }
+  if($('#chat-selected-'+ counter_details).hasClass("new")) {
+    $("#chat-selected-"+ counter_details).removeClass("new");
+  }
+
+  $('.check-selected').removeClass('check-selected');
+  $('#chat-selected-'+ counter_details).addClass('check-selected');
+  
+
     document.getElementById("conversation").innerHTML='';
     
     x = snap.user_list[counter_details];
@@ -96,7 +157,7 @@ function loadChat(counter_details) {
     }
 
   
-  console.log(current);
+  // console.log(current);
   
   scrollDown();
 
@@ -133,6 +194,7 @@ function addMessageText(message,timestamp,sender) {
     </div>`;
 
   } 
+  
   else {
 
     document.getElementById("conversation").innerHTML+=`
@@ -156,7 +218,7 @@ function sendMessage() {
 
   
 
-  // console.log();
+  
   var date = firebase.database.ServerValue.TIMESTAMP;
   var message_send = document.getElementById("comment").value;
   
@@ -208,24 +270,24 @@ function backPressed() {
   $('#the-left-side').addClass('col-xs-12');
   $('#the-left-side').css("display","block");
   
-  console.log("fuck");
+  // console.log("fuck");
 }
 
 
-if(checker>0) {
-  console.log(checker);
+
+  // console.log(checker);
   hotelDatabase.on('value', function(snapshot) {
     
-    console.log("value changed");
-    console.log(current);
-    console.log("value changed");
+    // console.log("value changed");
+    // console.log(current);
+    // console.log("value changed");
     
     document.getElementById("roomNumbers").innerHTML='';
   
     user_details = snap[current];
-    
+
     chats_check = user_details.chats.reception;
-  
+    old_snap = snap;
     window.snap = snapshot.val();
     user_id_list = snap.user_list;
     len = user_id_list.length;
@@ -233,26 +295,26 @@ if(checker>0) {
     // user_details = snap[x];
     // chats = user_details.chats.reception;
 
-    console.log(chats);
+    // console.log(chats);
 
     user_details = snap[current];
     chats = user_details.chats.reception;
   
     
     
-    console.log("chec");
-    console.log(chats);
-    console.log(current);
+    // console.log("chec");
+    // console.log(chats);
+    // console.log(current);
     
-    console.log(chats_check);
-    console.log("chec");
+    // console.log(chats_check);
+    // console.log("chec");
 
-    console.log(_.isEqual(chats, chats_check));
+    // console.log(_.isEqual(chats, chats_check));
     if(_.isEqual(chats, chats_check)) {
-      console.log("here");
+      // console.log("here");
     }
     else {
-      console.log("here?");
+      // console.log("here?");
       document.getElementById("conversation").innerHTML='';
       
       // x = snap.user_list[counter_details];
@@ -261,7 +323,7 @@ if(checker>0) {
       user_details = snap[x];
       chats = user_details.chats.reception;
       
-      // console.log(user_details.room_number);
+      console.log(user_details.room_number);
       document.getElementById("display-room").innerHTML=user_details.room_number;
 
       for (const j of Object.keys(chats)) {
@@ -274,32 +336,83 @@ if(checker>0) {
       scrollDown();
     }
 
+    // console.log('first');
     for (var i = len-1 ; i >= 0 ; i--) {
       
       document.getElementById("roomNumbers").innerHTML+='';
 
       x = snap.user_list[i];
-      user_details = snap[x];
-      
-      
-      document.getElementById("roomNumbers").innerHTML+=`
-      <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
-        <div class="col-sm-9 col-xs-9 sideBar-main">
-          <div class="row">
-            <div class="col-sm-8 col-xs-8 sideBar-name">
-              <span class="name-meta">
-                ` + user_details.room_number + `
-              </span>
+
+      user_details = snap[x];      
+      chats = user_details.chats.reception;
+
+      old_x = old_snap.user_list[i];
+      user_details_old = old_snap[old_x];
+      chats_old = user_details_old.chats.reception;
+
+
+
+      console.log("check");
+      console.log(chats_old);
+      console.log(chats);
+
+      if(!(_.isEqual(chats, chats_old))) {
+        // console.log(user_details.room_number);  
+        document.getElementById("roomNumbers").innerHTML+=`
+        <div class="row sideBar-body new" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
+          <div class="col-sm-9 col-xs-9 sideBar-main">
+            <div class="row">
+              <div class="col-sm-8 col-xs-8 sideBar-name">
+                <span class="name-meta">
+                  ` + user_details.room_number + `
+                </span>
+              </div>      
             </div>
-            
           </div>
-        </div>
-      </div>`;
-        
+        </div>`;
+      
+      }
+      
+      
     }
 
+    // console.log("second");
+    for (var i = len-1 ; i >= 0 ; i--) {
+      
+      document.getElementById("roomNumbers").innerHTML+='';
+
+      x = snap.user_list[i];
+
+      user_details = snap[x];      
+      chats = user_details.chats.reception;
+
+      old_x = old_snap.user_list[i];
+      user_details_old = old_snap[old_x];
+      chats_old = user_details_old.chats.reception;
+      
+      if(_.isEqual(chats, chats_old)) {
+        // console.log(user_details.room_number);  
+        document.getElementById("roomNumbers").innerHTML+=`
+        <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
+          <div class="col-sm-9 col-xs-9 sideBar-main">
+            <div class="row">
+              <div class="col-sm-8 col-xs-8 sideBar-name">
+                <span class="name-meta">
+                  ` + user_details.room_number + `
+                </span>
+              </div>
+              
+            </div>
+          </div>
+        </div>`;
+      }
+      
+      
+    }
+    
+
   });
-}
+
 
 function checkEnter() {
   var key = window.event.keyCode;
@@ -312,4 +425,183 @@ function checkEnter() {
       return true;
   }
 
+}
+
+function loadTasks(user_details) {
+  console.log("sup?");
+  console.log(user_details);
+}
+
+
+
+function markDone(request,stamp,x,done_id) {
+
+  console.log(x);
+  
+  console.log(done_id);
+  
+  
+  firebase.database().ref('hotel/1/' + done_id + '/chats/reception/' + x ).set({
+    datetime: stamp,
+    message: request,
+    sender : 3
+  });
+
+
+  console.log(request,stamp);
+}
+
+function loadIncomplete() {
+  console.log("inc");
+  document.getElementById("tasks").innerHTML = ``;
+  user_id_list = snap.user_list;
+  len = user_id_list.length;
+
+  for (var i = len-1 ; i >= 0 ; i--) {
+      
+    x = snap.user_list[i];
+    user_details = snap[x];
+    chats = user_details.chats.reception;
+
+  
+    for (const j of Object.keys(chats)) {
+   
+      if(chats[j].sender==2) {
+
+        var task = { 
+          name:"Tarush", 
+          room_number:50, 
+          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          additional_comments:"Sup",
+          date_time:"07:46 PM 23/02/2018"
+        };
+
+        var chat_timestamp = chats[j].datetime;
+        var myDate = new Date(chat_timestamp);
+        var formatedTime=myDate.toJSON();
+
+        
+        var to_send = JSON.stringify(chats[j]);
+          
+        var chat_time = formatedTime.substring(11,16);
+        var chat_day = formatedTime.substring(8,10);
+        var chat_month = formatedTime.substring(5,7);
+
+        console.log("hello?");
+        
+
+        document.getElementById("tasks").innerHTML += `
+        <div class="task col-sm-10 col-sm-offset-1">
+          
+            <div class="row task-body col-sm-7 col-sm-offset-1">
+              
+                <div class="task-room">
+                  ` + task.room_number + `            
+                </div>
+
+                <div class="task-request">
+                ` + task.request + `
+                </div>
+
+                <div class="task-time">
+                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+
+                </div>
+  
+            </div>
+
+            <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`')">
+              Done
+            </div>
+
+        </div>
+        `;
+        
+
+      }
+      
+    }
+
+  }
+}
+
+function loadComplete() {
+
+  console.log("com");
+  document.getElementById("tasks").innerHTML = ``;
+
+  user_id_list = snap.user_list;
+  len = user_id_list.length;
+
+  for (var i = len-1 ; i >= 0 ; i--) {
+      
+    x = snap.user_list[i];
+    user_details = snap[x];
+    chats = user_details.chats.reception;
+
+    
+  
+    for (const j of Object.keys(chats)) {
+   
+      if(chats[j].sender==3) {
+
+        console.log(chats[j]);
+
+        var task = { 
+          name:"Tarush", 
+          room_number:50, 
+          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          additional_comments:"Sup",
+          date_time:"07:46 PM 23/02/2018"
+        };
+
+        var chat_timestamp = chats[j].datetime;
+        console.log(chat_timestamp);
+        var myDate = new Date(chat_timestamp);
+        console.log(myDate);
+        var formatedTime=myDate.toJSON();
+
+        console.log(formatedTime);
+        var to_send = JSON.stringify(chats[j]);
+          
+        var chat_time = formatedTime.substring(11,16);
+        var chat_day = formatedTime.substring(8,10);
+        var chat_month = formatedTime.substring(5,7);
+
+        console.log("hello?");
+        
+
+        document.getElementById("tasks").innerHTML += `
+        <div class="task col-sm-10 col-sm-offset-1">
+          
+            <div class="row task-body col-sm-7 col-sm-offset-1">
+              
+                <div class="task-room">
+                  ` + task.room_number + `            
+                </div>
+
+                <div class="task-request">
+                ` + task.request + `
+                </div>
+
+                <div class="task-time">
+                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+
+                </div>
+  
+            </div>
+
+            <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`')">
+              Done
+            </div>
+
+        </div>
+        `;
+        
+
+      }
+      
+    }
+
+  }
 }

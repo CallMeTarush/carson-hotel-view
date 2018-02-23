@@ -1,19 +1,30 @@
 .selected {
   background: #eee !important;
 }
+.task {
 
-.task-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 80%;
   height: auto;
+  border: solid;
+  border-radius: 10px;
 
-  margin-left: 10% !important;
   margin-bottom: 2% !important;
   margin-top: 2% !important;
   padding: 2.5% !important;
-  border: solid;
-  border-radius: 10px;
+  padding-right: 0 !important;
+
+  
+}
+.task-body {
+
+  padding: 0 !important;  
+  height: auto;
+  
+}
+.done {
+  float: right !important;
+  height: auto;
+
+  cursor: pointer;
 }
 html,
 body,
@@ -327,11 +338,14 @@ body {
   border-left: 1px solid rgba(0, 0, 0, .08);
   /*overflow-y: auto;*/
 }
+.new {
+  background: lightgreen;
+}
 
 .message {
   padding: 0 !important;
   margin: 0 !important;
-  background: url("w.jpg") no-repeat fixed center;
+  background: no-repeat fixed center;
   background-size: cover;
   overflow-y: auto;
   border: 1px solid #f7f7f7;
