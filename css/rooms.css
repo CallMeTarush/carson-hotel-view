@@ -20,7 +20,7 @@ table {
     display: none; /* Hidden by default */
     width: 80%; /* Full width (cover the whole page) */
     height: 80%; /* Full height (cover the whole page) */
-    
+    border-radius: 10px;
     margin:auto auto;
     top: 0; 
     left: 0;
@@ -43,5 +43,8 @@ table {
 .cross {
     float:right;
     margin: 20px;
-    z-index: 5000;
+    z-index: 5000 !important;
+}
+form {
+    margin-top: 5vh;
 }

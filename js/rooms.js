@@ -48,21 +48,84 @@ function deleteRoom(click_index){
 function checkin() {
     loadOverlay();
 
-    var lolz = $('#roomNo');
-    var data_to_send = { 
-        'room':lolz.val(),
-    };
-    console.log(data_to_send);
-    $.ajax({
-        type: 'POST',
-        url: 'http://139.59.13.33:8383/hotel/generate_key',
-        data: JSON.stringify(data_to_send),
-        dataType: "json",
-        success: function(msg){
-            getRooms();
-        }
-    });
 }
+function addRoom() {
+
+    var roomNumber = document.getElementById("roomnumber").value;
+    console.log(roomNumber);
+    var mobile = document.getElementById("mobile").value;
+    console.log(mobile);
+    var name = document.getElementById("name").value;
+    console.log(name);
+
+    var data_to_send = { 
+        'room': roomNumber,
+        'mobile': mobile,
+        'name': name
+    };
+    // console.log(data_to_send);
+
+    // $.ajax({
+    //     type: 'POST',
+
+    //     data: data_to_send,
+    //     dataType: "json",
+    //     success: function(msg){
+    //         getRooms();
+    //     }
+    // });
+
+    
+
+    // var json = JSON.stringify(data_to_send); 
+    // console.log("json");
+    // console.log(json);
+
+    // $.ajax({
+    // type: "POST",
+    // url: 'http://139.59.13.33:8383/hotel/generate_key',
+    // data: json,
+    // contentType: "application/json; charset=utf-8",
+    // dataType: "json",
+    // success: function(msg) {
+    //     getRooms();
+    //     alert('In Ajax');
+    // }
+    // });
+    var roomObj = new Object();
+
+    roomObj.room = roomNumber;
+    roomObj.mobile = mobile;
+    roomObj.name = name;
+  
+    console.log(roomObj);
+    roomObj = JSON.stringify(roomObj);
+    console.log(roomObj);
+    $.ajax({
+  
+            url: 'http://139.59.13.33:8383/hotel/generate_key',
+  
+            type: 'POST',
+  
+            dataType: 'json',
+  
+            data: roomObj,
+  
+            success: function (data, textStatus, xhr) {
+              console.log("Posted!");
+              nextQuestion();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+  
+                console.log('Error in Operation');
+  
+            }
+    });
+
+    console.log("dksao");
+}
+
+
 function loadOverlay() {
     
     console.log("open");
@@ -75,7 +138,7 @@ function loadOverlay() {
 function closeOverlay() {
 
     console.log("close");
-    document.location.reload();
+    // document.location.reload();
     $('#overlay').addClass("animated fadeOut");
 
 }

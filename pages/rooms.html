@@ -9,14 +9,35 @@
     <link rel="stylesheet" href="../css/rooms.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <script src="../js/rooms.js"></script>
 </head>
 
 <body>
     <div id="overlay">
-        <div class="cross" onclick="closeOverlay()">
+        <div class="cross row col-md-12 text-right" onclick="closeOverlay()">
             <i class="fa fa-times fa-3x"></i>
         </div>
+        <center class="row col-md-12"><h1>Check-in</h1></center>
+        <form action="" class="col-md-6 col-md-offset-3" id="form" >
+            <div class="form-group">
+                <label for="room">Room number:</label>
+                <input type="text" class="form-control" id="roomnumber">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile:</label>
+                <input type="text" class="form-control" id="mobile">
+            </div>
+            <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+
+            <center><button onclick="addRoom()" class="btn btn-default">Submit</button></center>
+        </form>
+          
     </div>
 
     <nav class="navbar navbar-inverse always-open">
@@ -43,44 +64,15 @@
     <div class="container col-xs-12">
 
         <div class="checkin-div col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top:10vh">
-            <h2 class="col-md-12 text-center">  
-              <a href="http://tarush.me/carson-hotel-view/pages/views" id="home"><span class="glyphicon glyphicon-home"></span></a>
-              Check- in a room
-            </h2>
+            <h1 class="col-md-12 text-center" >   
+              
+              Rooms
+            </h1>
 
             <br>
-            <center>
-              <div id="overlay">
-        <div class="cross" onclick="closeOverlay()">
-            <i class="fa fa-times fa-3x"></i>
-        </div>
-        
-        <div class="room_number text-center" style="margin-top: 10vh;">
-            <b>G01</b>
-        </div>
-
-        <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
             
-            <table class="col-sm-12 animated fadeIn" id="big-table-2">
-                <thead>
-                    <tr  style="width: 100%;">
-                        <th>
-                            Category
-                        </th>
-                        
-                        <th>
-                            Stars
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="table-2" >
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-              <button onclick="checkin()" class="col-md-2 btn btn-primary">Check In</button>
-            </center>
+              <button onclick="checkin()" class="col-md-2 col-md-offset-5 btn btn-primary">Check In</button>
+            
         </div>
 
         <div class="col-xs-8 col-xs-offset-2" style="margin-top:5vh">
