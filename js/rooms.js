@@ -9,8 +9,6 @@ $(document).ready(function(){
 
 function getRooms() {
     
-    
-    
     $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
         
         rooms = data.rooms;        
@@ -22,16 +20,10 @@ function getRooms() {
             var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td class='text-right'><button onClick='deleteRoom(`" + rooms[i].key + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
             
             $("table tbody").append(markup);
-            
     
         }        
 
     });
-
-    
-    
-    
-    
     
 }
 
@@ -58,7 +50,7 @@ function deleteRoom(click_index){
         },
         error: function(result){ alert("error!") }
     });
-
+    getRooms();
 }
 
 function checkin() {
