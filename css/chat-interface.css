@@ -434,7 +434,7 @@ body {
 .message-time {
   margin: 0 !important;
   margin-left: 50px !important;
-  font-size: 12px;
+  font-size: 11px;
   text-align: right;
   color: white;
   margin-top: 10%;
@@ -513,6 +513,22 @@ body {
 
 .reply-main {
   padding: 2px 5px !important;
+}
+
+.loader {
+  position: fixed; /* Sit on top of the page content */
+
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: #E9374C;
+  color:white;
+  z-index: 800; /* Specify a stack order in case you're using a different order for other elements */
 }
 
 .reply-main textarea {

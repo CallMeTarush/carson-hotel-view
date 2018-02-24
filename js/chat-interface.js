@@ -7,8 +7,16 @@ window.checker = 0;
 window.done_id = '';
 var hotelDatabase = firebase.database().ref('hotel/1');
 
+$(window).on('load', function () {
+    
+  init();
+  
+});
+
+
 function init() {
   
+
 
   hotelDatabase.once('value').then(function(snapshot) {
 
@@ -122,7 +130,9 @@ function loadChat(counter_details) {
     loadAll();
   }
 
-  
+  setTimeout(function(){
+    $('.loader').fadeOut();
+  }, 200);  
 }
 
 function addMessageText(message,timestamp,sender) {
@@ -223,7 +233,7 @@ function scrollDown() {
   }, 500);
 }
 
-init();
+
 
 function backPressed() {
   $('#the-right-side').removeClass('col-xs-12');
@@ -415,7 +425,7 @@ function markDone(request,stamp,x,done_id) {
   console.log(request,stamp);
 
   var Id = $('.choice-selected').attr('id');
-  
+  console.log 
   if(Id === "incomplete") {
     loadIncomplete();
   }

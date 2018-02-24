@@ -32,6 +32,9 @@ $.get("http://139.59.13.33:8383/hotel/feedbackresponse", function(data, status){
         `
     }
 
+    setTimeout(function(){
+        $('.loader').fadeOut();
+    }, 200);
 
 });
 
