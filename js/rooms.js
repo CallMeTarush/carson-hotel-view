@@ -45,11 +45,14 @@ function deleteRoom(click_index){
         data: roomObj,
         dataType: 'json',               
         success: function(result) { 
-            getRooms(); 
+            
             $("table tbody").remove(); 
+            getRooms(); 
+            
         },
         error: function(result){ alert("error!") }
     });
+    $("table tbody").remove(); 
     getRooms();
 }
 
