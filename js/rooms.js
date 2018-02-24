@@ -113,7 +113,7 @@ function addRoom() {
   
             success: function (data, textStatus, xhr) {
               console.log("Posted!");
-              nextQuestion();
+              getRooms();
             },
             error: function (xhr, textStatus, errorThrown) {
   
