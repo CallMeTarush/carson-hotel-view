@@ -401,17 +401,7 @@ function markDone(request,stamp,x,done_id) {
   
   console.log(done_id);
   
-  var Id = $('.choice-selected').attr('id');
   
-  if(Id === "incomplete") {
-    loadIncomplete();
-  }
-  if(Id === "complete") {
-    loadComplete();
-  }
-  if(Id === "all") {
-    loadAll();
-  }
 
   stamp = Number(stamp);
   
@@ -424,6 +414,17 @@ function markDone(request,stamp,x,done_id) {
 
   console.log(request,stamp);
 
+  var Id = $('.choice-selected').attr('id');
+  
+  if(Id === "incomplete") {
+    loadIncomplete();
+  }
+  if(Id === "complete") {
+    loadComplete();
+  }
+  if(Id === "all") {
+    loadAll();
+  }
   
 }
 

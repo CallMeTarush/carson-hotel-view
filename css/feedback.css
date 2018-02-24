@@ -27,6 +27,8 @@ td {
     width: 80%; /* Full width (cover the whole page) */
     height: 80%; /* Full height (cover the whole page) */
     
+    overflow-y: scroll;
+
     margin:auto auto;
     top: 0; 
     left: 0;
