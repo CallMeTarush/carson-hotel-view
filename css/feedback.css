@@ -64,8 +64,16 @@ td {
     height: 100px !important;
     overflow-y: scroll !important;
 }
+#table-2 td{
+    border: solid;
+    border-width: 1px;
+    padding: 15px 0;
+}
+
+
 #table-2  th {
     width: 50% !important;
+
 }
 @media screen and (max-width: 1000px) {
     th {
