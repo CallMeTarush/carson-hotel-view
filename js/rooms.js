@@ -52,8 +52,7 @@ function deleteRoom(click_index){
         },
         error: function(result){ alert("error!") }
     });
-    $("table tbody").remove(); 
-    getRooms();
+    
 }
 
 function checkin() {
@@ -122,9 +121,11 @@ function addRoom() {
             data: roomObj,
   
             success: function (data, textStatus, xhr) {
-              console.log("Posted!");
-              getRooms();
-              $("table tbody").remove(); 
+              
+                console.log("Posted!");
+                $("table tbody").remove(); 
+                getRooms();
+              
             },
             error: function (xhr, textStatus, errorThrown) {
   
