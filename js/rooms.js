@@ -45,7 +45,8 @@ function deleteRoom(click_index){
         data: roomObj,
         dataType: 'json',               
         success: function(result) { 
-            
+
+            console.log("lmao");
             $("table tbody").remove(); 
             getRooms(); 
             
