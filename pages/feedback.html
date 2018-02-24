@@ -9,8 +9,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/feedback.css">
   <!-- Font Awesome File -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,8 +20,28 @@
 </head>
 
 <body>
+    <div id="overlay">
+        <div class="cross" onclick="closeOverlay()">
+            <i class="fa fa-times fa-3x"></i>
+        </div>
+        
+        <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top: 10vh;">
+            <table class="col-sm-12 animated fadeIn" id="table-2">
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Room Number
+                </th>
+                <th>
+                    Average Stars
+                </th>
+                
+            </table>
+        </div>
+    </div>
     <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top: 10vh;">
-        <table class="col-sm-12" id="table" >
+        <table class="col-sm-12 animated fadeIn" id="table" >
             <th>
                 User Name
             </th>
