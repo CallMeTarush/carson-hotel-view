@@ -2,9 +2,25 @@ var rooms;
 
 $(document).ready(function(){
     getRooms();   
-    setTimeout(function(){
-        $('.loader').fadeOut();
-    }, 200);
+
+    $('.grow').css("transform","scale(1.2)");
+
+    setTimeout(function(){ 
+      $('.grow').css("transform","scale(1)");
+    }, 500);
+    
+    setTimeout(function(){ 
+      $('.grow').css("transform","scale(1.2)");
+    }, 1000);
+
+    setTimeout(function(){ 
+      $('.grow').css("transform","scale(1)");
+    }, 1500);
+
+    setTimeout(function(){ 
+      $('.grow').css("transform","scale(1.2)");
+    }, 2000);
+
 });
 
 function getRooms() {
@@ -24,6 +40,11 @@ function getRooms() {
         }        
 
     });
+
+
+    setTimeout(function(){
+        $('.loader').fadeOut();
+    }, 200);
     
 }
 
