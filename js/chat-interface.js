@@ -1,5 +1,31 @@
 window.width = $(window).width();
 
+$(document).ready(function() {
+    
+  
+    
+      
+
+      $('.grow').css("transform","scale(1.2)");
+
+      setTimeout(function(){ 
+        $('.grow').css("transform","scale(1)");
+      }, 500);
+      
+      setTimeout(function(){ 
+        $('.grow').css("transform","scale(1.2)");
+      }, 1000);
+
+      setTimeout(function(){ 
+        $('.grow').css("transform","scale(1)");
+      }, 1500);
+
+      setTimeout(function(){ 
+        $('.grow').css("transform","scale(1.2)");
+      }, 2000);
+
+    
+});
 
 window.current = '';
 window.snap = '';
@@ -68,7 +94,10 @@ function init() {
     loadIncomplete();
 
   });
-
+  
+  setTimeout(function(){
+    $('.loader').fadeOut();
+  }, 200);
   // console.log("gello");  
 }
 function loadChat(counter_details) {
@@ -130,9 +159,6 @@ function loadChat(counter_details) {
     loadAll();
   }
 
-  setTimeout(function(){
-    $('.loader').fadeOut();
-  }, 200);  
 }
 
 function addMessageText(message,timestamp,sender) {

@@ -149,9 +149,11 @@ body {
   cursor: pointer;
 
 }
-
+.heading-avatar-icon {
+  width: 100% !important;
+}
 .heading-avatar-icon img {
-  border-radius: 25%;
+  
   height: 40px;
   width: 80px;
 }
@@ -529,9 +531,25 @@ body {
   right: 0;
   bottom: 0;
 
-  background-color: #E9374C;
+  background-color: white;
   color:white;
   z-index: 800; /* Specify a stack order in case you're using a different order for other elements */
+}
+.grow { transition: all .5s ease-in-out; }
+/* .grow { transform: scale(1.1); } */
+
+.loader img {
+  position: absolute; /* Sit on top of the page content */
+
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+
+  margin: auto;
+
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;    
 }
 
 .reply-main textarea {
@@ -601,10 +619,7 @@ body {
   .heading-avatar {
     padding: 0 !important;
   }
-  .heading-avatar-icon img {
-    height: 50px;
-    width: 50px;
-  }
+  
   .heading-compose {
     padding: 5px !important;
   }

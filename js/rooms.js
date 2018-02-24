@@ -2,32 +2,33 @@ var rooms;
 
 $(document).ready(function(){
     getRooms();   
+    setTimeout(function(){
+        $('.loader').fadeOut();
+    }, 200);
 });
 
 function getRooms() {
     
-    $("table tr").remove(); 
+    
     
     $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
         
-        rooms = data.rooms;
-        
+        rooms = data.rooms;        
+
         for (i = 0; i < rooms.length; i++) {
             
             var index = i;
             var roomno = rooms[i].room;
-            var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(`" + rooms[i].key + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+            var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td class='text-right'><button onClick='deleteRoom(`" + rooms[i].key + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
             
             $("table tbody").append(markup);
+            
     
-        }
-        
+        }        
 
     });
 
-    setTimeout(function(){
-        $('.loader').fadeOut();
-    }, 200);
+    
     
     
     
@@ -51,7 +52,10 @@ function deleteRoom(click_index){
         type: 'DELETE',
         data: roomObj,
         dataType: 'json',               
-        success: function(result) { getRooms(); },
+        success: function(result) { 
+            getRooms(); 
+            $("table tbody").remove(); 
+        },
         error: function(result){ alert("error!") }
     });
 
@@ -125,6 +129,7 @@ function addRoom() {
             success: function (data, textStatus, xhr) {
               console.log("Posted!");
               getRooms();
+              $("table tbody").remove(); 
             },
             error: function (xhr, textStatus, errorThrown) {
   

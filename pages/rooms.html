@@ -17,7 +17,9 @@
 
 <body>
     
-    <div class="loader"></div>
+    <div class="loader">
+        <img src="../img/logofinal.png" style="width: 25%; height:auto;">
+    </div>
     
     <div id="overlay">
         <div class="cross row col-md-12 text-right" onclick="closeOverlay()">
@@ -67,8 +69,7 @@
     <div class="container col-xs-12">
 
         <div class="checkin-div col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top:10vh">
-            <h1 class="col-md-12 text-center" >   
-              
+            <h1 class="col-md-12 text-center" >                 
               Rooms
             </h1>
 
@@ -78,21 +79,21 @@
             
         </div>
 
-        <div class="col-xs-8 col-xs-offset-2" style="margin-top:5vh">
+        <div class="col-xs-6 col-xs-offset-3" style="margin-top:5vh">
             <div class="table-responsive">
-                <table class="table" id="thetable">
+                <table class="table" >
 
                     <thead>
                         <tr>
                             <th id="index">#</th>
                             <th id="room">Room number</th>
-                            <th id="checkout">Check out</th>
+                            <th id="checkout"  >Check out</th>
                         </tr>
                     </thead>
 
-                    <tbody>
-
+                    <tbody id="thetable">
                     </tbody>
+
                 </table>
             </div>
         </div>
