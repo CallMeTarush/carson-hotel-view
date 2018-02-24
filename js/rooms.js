@@ -27,7 +27,8 @@ function getRooms() {
 }
 
 function deleteRoom(click_index){
-    
+    var roomObj = new Object();
+
     roomObj.room = roomNumber;
     
     console.log(roomObj);
