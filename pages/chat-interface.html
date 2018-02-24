@@ -48,12 +48,12 @@
                 <img src="../img/carson.jpg">
               </div>
             </div>
-            <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+            <!-- <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
               <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
             </div>
             <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
               <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
-            </div>
+            </div> -->
           </div>
           <!-- Heading End -->
 
@@ -162,13 +162,14 @@
 
           <div class="col-sm-8 col-xs-7 heading-name">
               
-            <p class="heading-name-meta" id="display-room">
+            <p class="heading-name-meta text-center" id="display-room" style="text-align:center !important;">
+              
             </p>
             
           </div>
-          <div class="col-sm-1 col-xs-1  heading-dot pull-right">
+          <!-- <div class="col-sm-1 col-xs-1  heading-dot pull-right">
             <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-          </div>
+          </div> -->
         </div>
         <!-- Heading End -->
         
@@ -237,127 +238,18 @@
             </center>
         </div>
         <!-- Heading End -->
-        <div class="col-sm-6 text-center" style="margin: 0 !important; height:auto; padding: 20px; border: solid; cursor:pointer;" onclick="loadIncomplete()">Incomplete</div>
-        <div class="col-sm-6 text-center" style="margin: 0 !important; height:auto; padding: 20px; border: solid; cursor:pointer;" onclick="loadComplete()">Completed</div>
-        
+        <div class="col-sm-12 fuck-padding" style="height: auto; margin-top: 2.5vh; margin-bottom: 5vh;">
+          <div class="col-sm-4 fuck-padding">
+            <div class="col-sm-12 text-center choice-box choice-selected" id="incomplete" onclick="loadIncomplete()">Incomplete</div>
+          </div>  
+          <div class="col-sm-4 fuck-padding">
+            <div class="col-sm-12 text-center choice-box" id="complete" onclick="loadComplete()">Completed</div>
+          </div>
+          <div class="col-sm-4 fuck-padding">
+            <div class="col-sm-12 text-center choice-box" id="all" onclick="loadAll()">All</div>
+          </div>
+        </div>
         <div class="row message" id="tasks">
-          
-          <!-- <div class="task col-sm-10 col-sm-offset-1">
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    G-01
-                  </div>
-
-                  <div class="task-request">
-                    2 Margherita Pizza's
-                  </div>
-
-                  <div class="task-time">
-                    22/02 17:56
-                  </div>
-    
-              </div>
-
-              <div class="col-sm-2 done" style="border: solid;">
-              Done
-            </div>
-
-          </div> -->
-
-          <!-- <div class="task col-sm-10 col-sm-offset-1">
-            
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    G-01
-                  </div>
-
-                  <div class="task-request">
-                    2 Margherita Pizza's
-                  </div>
-
-                  <div class="task-time">
-                    22/02 17:56
-                  </div>
-
-                
-              </div>
-            <div class="col-sm-2 done" style="border: solid;">
-              Done
-            </div>
-          </div> -->
-          <!-- <div class="task col-sm-10 col-sm-offset-1">
-            
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    G-01
-                  </div>
-
-                  <div class="task-request">
-                    2 Margherita Pizza's
-                  </div>
-
-                  <div class="task-time">
-                    22/02 17:56
-                  </div>
-
-                
-              </div>
-            <div class="col-sm-2 done" style="border: solid;">
-              Done
-            </div>
-          </div> -->
-          <!-- <div class="task col-sm-10 col-sm-offset-1">
-            
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    G-01
-                  </div>
-
-                  <div class="task-request">
-                    2 Margherita Pizza's
-                  </div>
-
-                  <div class="task-time">
-                    22/02 17:56
-                  </div>
-
-                
-              </div>
-            <div class="col-sm-2 done" style="border: solid;">
-              Done
-            </div>
-          </div> -->
-          <!-- <div class="task col-sm-10 col-sm-offset-1">
-            
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    G-01
-                  </div>
-
-                  <div class="task-request">
-                    2 Margherita Pizza's
-                  </div>
-
-                  <div class="task-time">
-                    22/02 17:56
-                  </div>
-
-                
-              </div>
-            <div class="col-sm-2 done" style="border: solid;">
-              Done
-            </div>
-          </div> -->
           
         </div>
       

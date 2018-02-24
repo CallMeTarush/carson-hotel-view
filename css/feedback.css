@@ -1,0 +1,12 @@
+th {
+    text-align: center;
+    font-size: 4rem;
+}
+td {
+    font-size: 3rem;
+    text-align: center;
+}
+
+tr:hover {
+    background: #eee !important;
+}

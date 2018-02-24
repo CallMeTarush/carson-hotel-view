@@ -1,29 +1,64 @@
 .selected {
   background: #eee !important;
 }
+#roomNumbers {
+  
+}
+#display-room {
+  font-size: 2rem;
+}
 .task {
 
   height: auto;
-  border: solid;
-  border-radius: 10px;
+  
 
   margin-bottom: 2% !important;
   margin-top: 2% !important;
   padding: 2.5% !important;
   padding-right: 0 !important;
 
-  
+  box-shadow: 5px 5px 5px #ccc;
+  background: white !important;
 }
 .task-body {
 
   padding: 0 !important;  
   height: auto;
+   
+}
+.choice-box {
+
+  
+  height:auto; padding: 5%; border: solid; cursor:pointer;
+  border-radius: 200px;
+  border-color: #E9374C;
+  
+}
+.completed-task {
+  border: solid;
+  border-color: lightgreen;
+}
+.incompleted-task {
+  border: solid;
+  border-color: red;
+}
+.task-room {
+  background-color: #FF3D56;
+  width: auto;
+  display: inline-block !important;
+  padding: 2px 30px;
+  border-radius: 200px;
+  color: white;
+  font-weight: bolder;
+}
+
+.choice-selected {
+  background: #E9374C;
+  color: white;
   
 }
 .done {
-  float: right !important;
   height: auto;
-
   cursor: pointer;
 }
 html,
@@ -419,7 +454,7 @@ body {
 .sender {
   float: right;
   width: auto !important;
-  background: #dcf8c6;
+  background: rgb(250, 159, 165);
   border-radius: 10px 10px 0 10px;
   padding: 4px 10px 7px !important;
   font-size: 12px;
@@ -505,6 +540,14 @@ body {
     width: 100vw !important;
   }
 
+  
+
+}
+
+@media screen and (max-width: 1000px) {
+  .fuck-padding {
+    padding: 0 !important;
+  }
 }
 
  @media screen and (max-width: 768px) {

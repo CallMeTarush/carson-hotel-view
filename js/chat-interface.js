@@ -44,71 +44,20 @@ function init() {
 
       done_id = x;
 
-      for (const j of Object.keys(chats)) {
-   
-        if(chats[j].sender==2) {
+      
 
-          var task = { 
-            name:"Tarush", 
-            room_number:50, 
-            request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
-            additional_comments:"Sup",
-            date_time:"07:46 PM 23/02/2018"
-          };
-
-          var chat_timestamp = chats[j].datetime;
-          var myDate = new Date(chat_timestamp);
-          var formatedTime=myDate.toJSON();
-
-          
-          var to_send = JSON.stringify(chats[j]);
-            
-          var chat_time = formatedTime.substring(11,16);
-          var chat_day = formatedTime.substring(8,10);
-          var chat_month = formatedTime.substring(5,7);
-
-          console.log("hello?");
-          
-
-          document.getElementById("tasks").innerHTML += `
-          <div class="task col-sm-10 col-sm-offset-1">
-            
-              <div class="row task-body col-sm-7 col-sm-offset-1">
-                
-                  <div class="task-room">
-                    ` + task.room_number + `            
-                  </div>
-
-                  <div class="task-request">
-                  ` + task.request + `
-                  </div>
-
-                  <div class="task-time">
-                  `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
-
-                  </div>
-    
-              </div>
-
-              <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
-                Done
-              </div>
-
-          </div>
-          `;
-          
-
-        }
-        
-      }
-
-      if(width>=768) {
+    if(width>=768) {
       $('#chat-selected-1').addClass('selected');
-      }
+      
+    }
+    else {
+      $('.bhenchod').css('display','none');
+    }
       $('#chat-selected-1').addClass('check-selected');
     }
 
     loadChat(len-1);
+    loadIncomplete();
 
   });
 
@@ -161,13 +110,25 @@ function loadChat(counter_details) {
   
   scrollDown();
 
+  var Id = $('.choice-selected').attr('id');
+  
+  if(Id === "incomplete") {
+    loadIncomplete();
+  }
+  if(Id === "complete") {
+    loadComplete();
+  }
+  if(Id === "all") {
+    loadAll();
+  }
+
   
 }
 
 function addMessageText(message,timestamp,sender) {
 
-  
   var myDate = new Date(timestamp);
+  
   var formatedTime=myDate.toJSON();
   
   
@@ -195,7 +156,7 @@ function addMessageText(message,timestamp,sender) {
 
   } 
   
-  else {
+  else if(sender == 1) {
 
     document.getElementById("conversation").innerHTML+=`
     <div class="row message-body">
@@ -217,8 +178,8 @@ function addMessageText(message,timestamp,sender) {
 function sendMessage() {
 
   
-
   
+
   var date = firebase.database.ServerValue.TIMESTAMP;
   var message_send = document.getElementById("comment").value;
   
@@ -440,20 +401,39 @@ function markDone(request,stamp,x,done_id) {
   
   console.log(done_id);
   
+  var Id = $('.choice-selected').attr('id');
+  
+  if(Id === "incomplete") {
+    loadIncomplete();
+  }
+  if(Id === "complete") {
+    loadComplete();
+  }
+  if(Id === "all") {
+    loadAll();
+  }
+
+  stamp = Number(stamp);
   
   firebase.database().ref('hotel/1/' + done_id + '/chats/reception/' + x ).set({
     datetime: stamp,
     message: request,
     sender : 3
   });
-
+  console.log("done?");
 
   console.log(request,stamp);
+
+  
 }
 
 function loadIncomplete() {
   console.log("inc");
   document.getElementById("tasks").innerHTML = ``;
+
+  $('.choice-selected').removeClass('choice-selected');
+  $('#incomplete').addClass('choice-selected');
+
   user_id_list = snap.user_list;
   len = user_id_list.length;
 
@@ -479,56 +459,51 @@ function loadIncomplete() {
         var chat_timestamp = chats[j].datetime;
         var myDate = new Date(chat_timestamp);
         var formatedTime=myDate.toJSON();
-
-        
-        var to_send = JSON.stringify(chats[j]);
           
         var chat_time = formatedTime.substring(11,16);
         var chat_day = formatedTime.substring(8,10);
         var chat_month = formatedTime.substring(5,7);
 
-        console.log("hello?");
-        
-
         document.getElementById("tasks").innerHTML += `
         <div class="task col-sm-10 col-sm-offset-1">
-          
-            <div class="row task-body col-sm-7 col-sm-offset-1">
-              
+            <div class="row task-body col-sm-10 col-sm-offset-1">
                 <div class="task-room">
                   ` + task.room_number + `            
                 </div>
-
                 <div class="task-request">
                 ` + task.request + `
                 </div>
-
                 <div class="task-time">
                 `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
-
                 </div>
-  
             </div>
-
-            <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`')">
-              Done
+            <div class="row col-sm-2 col-sm-offset-1 text-center done" style="border: solid; margin-top: 5px;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
+              Mark as Done
             </div>
-
+            <div class="row col-sm-2 incompleted-task" style="margin-right: 5px; float:right;">
+              Incomplete
+            </div>
         </div>
         `;
-        
-
       }
       
     }
+    
 
+  }
+  if(document.getElementById("tasks").innerHTML === '')
+  {
+    document.getElementById("tasks").innerHTML = '<center><b>No Pending Tasks!</b></center>';
   }
 }
 
-function loadComplete() {
+function loadAll() {
 
   console.log("com");
   document.getElementById("tasks").innerHTML = ``;
+
+  $('.choice-selected').removeClass('choice-selected');
+  $('#all').addClass('choice-selected');
 
   user_id_list = snap.user_list;
   len = user_id_list.length;
@@ -538,8 +513,6 @@ function loadComplete() {
     x = snap.user_list[i];
     user_details = snap[x];
     chats = user_details.chats.reception;
-
-    
   
     for (const j of Object.keys(chats)) {
    
@@ -556,13 +529,10 @@ function loadComplete() {
         };
 
         var chat_timestamp = chats[j].datetime;
-        console.log(chat_timestamp);
         var myDate = new Date(chat_timestamp);
-        console.log(myDate);
         var formatedTime=myDate.toJSON();
 
-        console.log(formatedTime);
-        var to_send = JSON.stringify(chats[j]);
+
           
         var chat_time = formatedTime.substring(11,16);
         var chat_day = formatedTime.substring(8,10);
@@ -574,7 +544,7 @@ function loadComplete() {
         document.getElementById("tasks").innerHTML += `
         <div class="task col-sm-10 col-sm-offset-1">
           
-            <div class="row task-body col-sm-7 col-sm-offset-1">
+            <div class="row task-body col-sm-10 col-sm-offset-1">
               
                 <div class="task-room">
                   ` + task.room_number + `            
@@ -591,17 +561,134 @@ function loadComplete() {
   
             </div>
 
-            <div class="col-sm-2 done" style="border: solid;" onclick="markDone('`+task.request+`','`+chat_timestamp+`')">
-              Done
+            <div class="row col-sm-2 completed-task" style="margin-right: 5px; float:right;">
+              Complete
             </div>
+
 
         </div>
         `;
         
 
       }
+      if(chats[j].sender==2) {
+
+        var task = { 
+          name:"Tarush", 
+          room_number:50, 
+          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          additional_comments:"Sup",
+          date_time:"07:46 PM 23/02/2018"
+        };
+
+        var chat_timestamp = chats[j].datetime;
+        var myDate = new Date(chat_timestamp);
+        var formatedTime=myDate.toJSON();
+          
+        var chat_time = formatedTime.substring(11,16);
+        var chat_day = formatedTime.substring(8,10);
+        var chat_month = formatedTime.substring(5,7);
+
+        document.getElementById("tasks").innerHTML += `
+        <div class="task col-sm-10 col-sm-offset-1">
+            <div class="row task-body col-sm-10 col-sm-offset-1">
+                <div class="task-room">
+                  ` + task.room_number + `            
+                </div>
+                <div class="task-request">
+                ` + task.request + `
+                </div>
+                <div class="task-time">
+                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+                </div>
+            </div>
+            <div class="row col-sm-2 col-sm-offset-1 text-center done" style="border: solid; margin-top: 5px;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
+              Mark as Done
+            </div>
+            <div class="row col-sm-2 incompleted-task" style="margin-right: 5px; float:right;">
+              Incomplete
+            </div>
+        </div>
+        `;
+      }
       
     }
 
   }
+  if(document.getElementById("tasks").innerHTML === '')
+  {
+    document.getElementById("tasks").innerHTML = '<center><b>No Tasks!</b></center>';
+  }
+}
+
+function loadComplete() {
+
+  console.log("all");
+  document.getElementById("tasks").innerHTML = ``;
+
+  $('.choice-selected').removeClass('choice-selected');
+  $('#complete').addClass('choice-selected');
+
+  user_id_list = snap.user_list;
+  len = user_id_list.length;
+
+  for (var i = len-1 ; i >= 0 ; i--) {
+      
+    x = snap.user_list[i];
+    user_details = snap[x];
+    chats = user_details.chats.reception;
+  
+    for (const j of Object.keys(chats)) {
+   
+      if(chats[j].sender==3) {
+
+        console.log(chats[j]);
+
+        var task = { 
+          name:"Tarush", 
+          room_number:50, 
+          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          additional_comments:"Sup",
+          date_time:"07:46 PM 23/02/2018"
+        };
+
+        var chat_timestamp = chats[j].datetime;
+        var myDate = new Date(chat_timestamp);
+        var formatedTime=myDate.toJSON();
+          
+        var chat_time = formatedTime.substring(11,16);
+        var chat_day = formatedTime.substring(8,10);
+        var chat_month = formatedTime.substring(5,7);
+
+        console.log("hello?");
+      
+        
+        document.getElementById("tasks").innerHTML += `
+        <div class="task col-sm-10 col-sm-offset-1">          
+            <div class="row task-body col-sm-10 col-sm-offset-1">              
+                <div class="task-room">
+                  ` + task.room_number + `            
+                </div>
+                <div class="task-request">
+                ` + task.request + `
+                </div>
+                <div class="task-time">
+                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+                </div>  
+            </div>
+            
+            <div class="row col-sm-2 completed-task" style="margin-right: 5px; float:right;">
+              Complete
+            </div>
+        </div>
+        `;      
+      }      
+    }
+  }
+  
+  if(document.getElementById("tasks").innerHTML === '')
+  {
+    document.getElementById("tasks").innerHTML = '<center><b>No Tasks!</b></center>';
+  }
+
 }
