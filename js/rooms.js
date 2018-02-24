@@ -10,13 +10,19 @@ function getRooms() {
     
     $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
         rooms = data.rooms;
+        console.log(rooms);
         for (i = 0; i < rooms.length; i++) {
             var index = i;
             var roomno = rooms[i].room;
             var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+            
             $("table tbody").append(markup);
+    
         }
-    });    
+        
+
+    });
+    
 }
 
 function deleteRoom(click_index){
@@ -24,15 +30,14 @@ function deleteRoom(click_index){
 
 
     var data_to_send = { 
-        '"room"' :rooms[click_index].room
+        "room" :rooms[click_index].room
     };
 
-    console.log(data_to_send);
-
+    
     $.ajax({
         url: 'http://139.59.13.33:8383/hotel/delete_key',
         type: 'DELETE',
-        data: data_to_send,
+        data: JSON.stringify(data_to_send),
         dataType: 'json',               
         success: function(result) { getRooms(); },
         error: function(result){ alert("error!") }

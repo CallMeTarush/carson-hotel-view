@@ -1,21 +1,32 @@
+var sum;
+var feedbackResponse;
 $.get("http://139.59.13.33:8383/hotel/feedbackresponse", function(data, status){
     
-    feedbackResponse = data.ratings;    
-    console.log(feedbackResponse);
-
+    console.log(data);
+    feedbackResponse = data;
     for (const j of Object.keys(feedbackResponse)) {
         
-        console.log(feedbackResponse[j].user);
+        sum=0;
+
+        console.log(feedbackResponse[j]);
+        for (x in feedbackResponse[j].ratings) {
+            sum+=Number(feedbackResponse[j].ratings[x].rating);
+        }
+        console.log(sum);
+        average = sum/feedbackResponse[j].ratings.length;
+        average = average.toFixed(1);
+        console.log(average);
+
         document.getElementById("table").innerHTML+=`
         <tr onclick="loadOverlay(` + feedbackResponse[j].user + `)" >
             <td>
-            ` + feedbackResponse[j].user + `
+            ` + feedbackResponse[j].room + `
             </td>
             <td>
-            ` + feedbackResponse[j].question + `
+            ` + feedbackResponse[j].comment + `
             </td>
             <td>
-            ` + feedbackResponse[j].rating + `
+            ` + average + `
             </td>
         </tr>
         `
@@ -50,27 +61,6 @@ function closeOverlay() {
 
 function loadTable(user_id) {
     
-    $.get("http://139.59.13.33:8383/hotel/feedbackresponse", function(data, status){
-    
-        feedbackResponse = data.ratings;    
-        
-        for (const j of Object.keys(feedbackResponse)) {
-            
-            document.getElementById("table-2").innerHTML+=`
-            <tr onclick="loadOverlay()" >
-                <td>
-                ` + feedbackResponse[j].user + `
-                </td>
-                <td>
-                ` + feedbackResponse[j].question + `
-                </td>
-                <td>
-                ` + feedbackResponse[j].rating + `
-                </td>
-            </tr>
-            `
-        }
-
-    });
+    console.log(feedbackResponse);
 
 }

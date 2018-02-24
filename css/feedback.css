@@ -1,10 +1,13 @@
 body{
     font-family: 'Open Sans', sans-serif !important;
 }
-
+#table {
+    border:solid;
+}
 th {
     text-align: center;
     font-size: 4rem;
+    border: solid;
 }
 td {
     font-size: 3rem;
@@ -14,7 +17,10 @@ td {
 #table tr:hover {
     background: #eee !important;
 }
-
+.room_number {
+    color: white;
+    font-size: 4rem;
+}
 #overlay {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
@@ -35,4 +41,21 @@ td {
 .cross {
     float:right;
     margin: 20px;
+}
+
+#table-2  th {
+    width: 50% !important;
+}
+@media screen and (max-width: 1000px) {
+    th {
+        
+    }
+    #overlay {
+        margin:0 !important;
+        height: 100% !important;
+        width:100% !important;
+    }
+    td {
+        
+    }
 }

@@ -20,33 +20,60 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse always-open">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Brand</a>
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="chat-interface.html">Chats</a></li>
+                
+                <li><a href="rooms.html">Rooms</a></li>
+    
+                <li class="active"><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div id="overlay">
         <div class="cross" onclick="closeOverlay()">
             <i class="fa fa-times fa-3x"></i>
         </div>
         
-        <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top: 10vh;">
+        <div class="room_number text-center" style="margin-top: 10vh;">
+            <b>G01</b>
+        </div>
+
+        <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            
             <table class="col-sm-12 animated fadeIn" id="table-2">
-                <th>
-                    User Name
-                </th>
-                <th>
-                    Room Number
-                </th>
-                <th>
-                    Average Stars
-                </th>
                 
+                <tr  style="width: 100%;">
+                    <th>
+                        Category
+                    </th>
+                    
+                    <th>
+                        Stars
+                    </th>
+                </tr>
+
             </table>
         </div>
     </div>
-    <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top: 10vh;">
+    <div class="table-container col-md-8 col-md-offset-2 col-sm-12 col-xs-12" style="margin-top: 10vh;">
         <table class="col-sm-12 animated fadeIn" id="table" >
             <th>
-                User Name
+                Room Number
             </th>
             <th>
-                Room Number
+                Comment
             </th>
             <th>
                 Average Stars

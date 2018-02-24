@@ -1,48 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Carson</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/rooms.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="../js/rooms.js"></script>
+    <title>Carson</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/rooms.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/rooms.js"></script>
 </head>
 
 <body>
-
-<div class="container col-xs-12">
-
-    <div class="checkin-div" style="margin-top:10vh">  <h2 class="col-md-offset-3">  
-    <a href="http://tarush.me/carson-hotel-view/pages/views" id="home"><span class="glyphicon glyphicon-home"></span></a>Check- in a room</h2>
-     
-    <br>
+    <nav class="navbar navbar-inverse always-open">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Brand</a>
+            <button type="button" class="navbar-toggle" 
+                    data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="chat-interface.html">Chats</a></li>
+                
+                <li class="active"><a href="rooms.html">Rooms</a></li>
     
-    <input type="text" id="roomNo" placeholder="123" class="col-md-2 col-md-offset-4" />   
-      <button onclick="checkin()" class="col-md-1 btn btn-primary">Check In</button> 
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container col-xs-12">
+
+        <div class="checkin-div col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top:10vh">
+            <h2 class="col-md-12 text-center">  
+              <a href="http://tarush.me/carson-hotel-view/pages/views" id="home"><span class="glyphicon glyphicon-home"></span></a>
+              Check- in a room
+            </h2>
+
+            <br>
+            <center>
+              <input type="text" id="roomNo" placeholder="Room number" class="col-md-6 col-md-offset-2" />
+              <button onclick="checkin()" class="col-md-2 btn btn-primary">Check In</button>
+            </center>
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2" style="margin-top:5vh">
+            <div class="table-responsive">
+                <table class="table" id="thetable">
+
+                    <thead>
+                        <tr>
+                            <th id="index">#</th>
+                            <th id="room">Room number</th>
+                            <th id="checkout">Check out</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    
-    <div class="col-xs-8 col-xs-offset-2" style="margin-top:5vh">
-      <div class="table-responsive">          
-        <table class="table" id="thetable">
-          
-          <thead>
-            <tr>
-              <th id="index">#</th>
-              <th id="room">Room number</th>
-              <th id="checkout">Check out</th>
-            </tr>
-          </thead>
-          
-          <tbody> 
-          
-          </tbody>
-        </table>
-      </div> 
-	  </div>
-</div>
 
 </body>
-</html> 
+
+</html>
