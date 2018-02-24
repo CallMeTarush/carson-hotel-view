@@ -436,8 +436,8 @@ body {
   margin-left: 50px !important;
   font-size: 12px;
   text-align: right;
-  color: #9a9a9a;
-
+  color: white;
+  margin-top: 10%;
 }
 
 .receiver {
@@ -453,8 +453,11 @@ body {
 
 .sender {
   float: right;
+  
+  min-width: 40%;
   width: auto !important;
-  background: rgb(250, 159, 165);
+  background: #ef5d60 !important;
+  color:white !important;
   border-radius: 10px 10px 0 10px;
   padding: 4px 10px 7px !important;
   font-size: 12px;
@@ -547,6 +550,9 @@ body {
 @media screen and (max-width: 1000px) {
   .fuck-padding {
     padding: 0 !important;
+  }
+  .sender {
+    min-width: 0px;
   }
 }
 

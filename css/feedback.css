@@ -42,7 +42,10 @@ td {
     float:right;
     margin: 20px;
 }
-
+#big-table-2 {
+    height: 100px !important;
+    overflow-y: scroll !important;
+}
 #table-2  th {
     width: 50% !important;
 }

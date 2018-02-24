@@ -15,3 +15,33 @@ table {
 	font-size: 20px;
 	padding: 5px;
 }
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 80%; /* Full width (cover the whole page) */
+    height: 80%; /* Full height (cover the whole page) */
+    
+    margin:auto auto;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #E9374C;
+    color:white;
+    z-index: 500; /* Specify a stack order in case you're using a different order for other elements */
+}
+@media screen and (max-width: 1000px) {
+    
+    #overlay {
+        margin:0 !important;
+        height: 100% !important;
+        width:100% !important;
+    }
+    
+}
+.cross {
+    float:right;
+    margin: 20px;
+    z-index: 5000;
+}

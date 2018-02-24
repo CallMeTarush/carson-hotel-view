@@ -37,7 +37,8 @@ $.get("http://139.59.13.33:8383/hotel/feedbackresponse", function(data, status){
 
 function loadOverlay(user_id) {
     
-    console.log(user_id);
+    console.log("open");
+    console.log("lmao12");
     loadTable(user_id);
 
     document.getElementById("table-2").innerHTML+=``;
@@ -60,7 +61,21 @@ function closeOverlay() {
 }
 
 function loadTable(user_id) {
-    
+    console.log("lmao");
     console.log(feedbackResponse);
-
+    
+    for(const j of Object.keys(feedbackResponse)) {
+        console.log(j);
+        for(var counter=0; counter < feedbackResponse[j].ratings.length; ++counter) {
+            console.log(feedbackResponse[j].ratings[counter]);
+            document.getElementById("table-2").innerHTML+=`
+            <tr>
+                <td>`+feedbackResponse[j].ratings[counter].question+`</td>
+                <td>`+feedbackResponse[j].ratings[counter].rating+`</td>
+            </tr>
+            `;
+        }
+        console.log(feedbackResponse[j].ratings);
+        
+    }
 }

@@ -27,30 +27,30 @@ function getRooms() {
 
 function deleteRoom(click_index){
     
-
-
     var data_to_send = { 
-        "room" :rooms[click_index].room
+        'room' :rooms[click_index].room
     };
 
-    
+    console.log(data_to_send);
+    var data_to_send = JSON.stringify(data_to_send);
+    console.log(data_to_send);
     $.ajax({
         url: 'http://139.59.13.33:8383/hotel/delete_key',
         type: 'DELETE',
-        data: JSON.stringify(data_to_send),
+        data: data_to_send,
         dataType: 'json',               
         success: function(result) { getRooms(); },
         error: function(result){ alert("error!") }
     });
 
-    
 }
 
 function checkin() {
+    loadOverlay();
 
     var lolz = $('#roomNo');
     var data_to_send = { 
-        'room':lolz.val()
+        'room':lolz.val(),
     };
     console.log(data_to_send);
     $.ajax({
@@ -62,6 +62,21 @@ function checkin() {
             getRooms();
         }
     });
+}
+function loadOverlay() {
+    
+    console.log("open");
+    console.log("lmao12");
 
+    $('#overlay').addClass("animated fadeIn");
+    $('#overlay').css("display","block");
 
 }
+function closeOverlay() {
+
+    console.log("close");
+    document.location.reload();
+    $('#overlay').addClass("animated fadeOut");
+
+}
+
