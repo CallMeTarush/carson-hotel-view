@@ -1,3 +1,6 @@
+.receiver .message-time {
+  color: black;
+}
 .selected {
   background: #eee !important;
 }
@@ -427,7 +430,7 @@ body {
   padding: 5px !important;
   word-wrap:break-word;
   font-weight: 200;
-  font-size: 14px;
+  font-size: 16px;
   padding-bottom: 0 !important;
 }
 
