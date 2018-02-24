@@ -9,8 +9,9 @@ function getRooms() {
     $("table tr").remove(); 
     
     $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
+        
         rooms = data.rooms;
-        console.log(rooms);
+        
         for (i = 0; i < rooms.length; i++) {
             var index = i;
             var roomno = rooms[i].room;
@@ -27,13 +28,14 @@ function getRooms() {
 
 function deleteRoom(click_index){
     
-    var data_to_send = { 
-        'room' :rooms[click_index].room
-    };
+    roomObj.room = roomNumber;
+    
+    console.log(roomObj);
+    roomObj = JSON.stringify(roomObj);
+    console.log(roomObj);
 
-    console.log(data_to_send);
-    var data_to_send = JSON.stringify(data_to_send);
-    console.log(data_to_send);
+    var data_to_send = JSON.stringify(roomObj);
+
     $.ajax({
         url: 'http://139.59.13.33:8383/hotel/delete_key',
         type: 'DELETE',
@@ -47,7 +49,6 @@ function deleteRoom(click_index){
 
 function checkin() {
     loadOverlay();
-
 }
 function addRoom() {
 
