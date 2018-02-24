@@ -15,7 +15,7 @@ function getRooms() {
         for (i = 0; i < rooms.length; i++) {
             var index = i;
             var roomno = rooms[i].room;
-            var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(" + index + ")'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+            var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td><button onClick='deleteRoom(`" + roomno + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
             
             $("table tbody").append(markup);
     
@@ -29,7 +29,8 @@ function getRooms() {
 function deleteRoom(click_index){
     var roomObj = new Object();
 
-    roomObj.room = roomNumber;
+    console.log(click_index);
+    roomObj.room = click_index;
     
     console.log(roomObj);
     roomObj = JSON.stringify(roomObj);
