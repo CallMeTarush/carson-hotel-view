@@ -68,7 +68,7 @@ function deleteRoom(click_index){
         success: function(result) { 
 
             console.log("lmao");
-            $("table tbody").remove(); 
+            $("table tbody div").remove(); 
             getRooms(); 
             
         },
@@ -94,35 +94,7 @@ function addRoom() {
         'mobile': mobile,
         'name': name
     };
-    // console.log(data_to_send);
-
-    // $.ajax({
-    //     type: 'POST',
-
-    //     data: data_to_send,
-    //     dataType: "json",
-    //     success: function(msg){
-    //         getRooms();
-    //     }
-    // });
-
     
-
-    // var json = JSON.stringify(data_to_send); 
-    // console.log("json");
-    // console.log(json);
-
-    // $.ajax({
-    // type: "POST",
-    // url: 'http://139.59.13.33:8383/hotel/generate_key',
-    // data: json,
-    // contentType: "application/json; charset=utf-8",
-    // dataType: "json",
-    // success: function(msg) {
-    //     getRooms();
-    //     alert('In Ajax');
-    // }
-    // });
     var roomObj = new Object();
 
     roomObj.room = roomNumber;
