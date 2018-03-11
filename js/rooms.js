@@ -58,7 +58,7 @@ function deleteRoom(click_index){
     roomObj = JSON.stringify(roomObj);
     console.log(roomObj);
 
-    
+    alert("Are you sure?");
     
     $.ajax({
         url: 'http://139.59.13.33:8383/hotel/delete_key',
