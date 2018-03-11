@@ -32,12 +32,12 @@ td {
     right: 0;
     bottom: 0;
   
-    background-color: #E9374C;
+    background-color: white;
     color:white;
     z-index: 800; /* Specify a stack order in case you're using a different order for other elements */
   }
 
-  .loader img {
+.loader img {
     position: absolute; /* Sit on top of the page content */
 
     width: 100%; /* Full width (cover the whole page) */

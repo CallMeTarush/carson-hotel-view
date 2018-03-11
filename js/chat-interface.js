@@ -465,7 +465,10 @@ function markDone(request,stamp,x,done_id) {
 }
 
 function loadIncomplete() {
-  console.log("inc");
+
+  
+  $('#tasks').addClass('animated fadeIn');
+  
   document.getElementById("tasks").innerHTML = ``;
 
   $('.choice-selected').removeClass('choice-selected');
@@ -482,13 +485,14 @@ function loadIncomplete() {
 
   
     for (const j of Object.keys(chats)) {
-   
+      
       if(chats[j].sender==2) {
 
+        console.log("k" + JSON.stringify(chats[j]));
         var task = { 
           name:"Tarush", 
-          room_number:50, 
-          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          room_number: user_details.room_number, 
+          request: chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
         };
@@ -532,12 +536,15 @@ function loadIncomplete() {
   {
     document.getElementById("tasks").innerHTML = '<center><b>No Pending Tasks!</b></center>';
   }
+  // $('#tasks').removeClass('animated fadeIn');
 }
 
 function loadAll() {
 
   console.log("com");
   document.getElementById("tasks").innerHTML = ``;
+
+  $('#tasks').addClass('animated fadeIn');
 
   $('.choice-selected').removeClass('choice-selected');
   $('#all').addClass('choice-selected');
@@ -550,17 +557,60 @@ function loadAll() {
     x = snap.user_list[i];
     user_details = snap[x];
     chats = user_details.chats.reception;
-  
+    
     for (const j of Object.keys(chats)) {
-   
+      
+      console.log(user_details);
+
+      if(chats[j].sender==2) {
+
+        var task = { 
+          name:"Tarush", 
+          room_number: user_details.room_number, 
+          request:chats[j].message,
+          additional_comments:"Sup",
+          date_time:"07:46 PM 23/02/2018"
+        };
+
+        var chat_timestamp = chats[j].datetime;
+        var myDate = new Date(chat_timestamp);
+        var formatedTime=myDate.toJSON();
+          
+        var chat_time = formatedTime.substring(11,16);
+        var chat_day = formatedTime.substring(8,10);
+        var chat_month = formatedTime.substring(5,7);
+
+        document.getElementById("tasks").innerHTML += `
+        <div class="task col-sm-10 col-sm-offset-1">
+            <div class="row task-body col-sm-10 col-sm-offset-1">
+                <div class="task-room">
+                  ` + task.room_number + `            
+                </div>
+                <div class="task-request">
+                ` + task.request + `
+                </div>
+                <div class="task-time">
+                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
+                </div>
+            </div>
+            <div class="row col-sm-2 col-sm-offset-1 text-center done" style="border: solid; margin-top: 5px;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
+              Mark as Done
+            </div>
+            <div class="row col-sm-2 incompleted-task" style="margin-right: 5px; float:right;">
+              Incomplete
+            </div>
+        </div>
+        `;
+      }
+      
       if(chats[j].sender==3) {
 
         console.log(chats[j]);
 
         var task = { 
           name:"Tarush", 
-          room_number:50, 
-          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          room_number: user_details.room_number, 
+          request:chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
         };
@@ -608,59 +658,21 @@ function loadAll() {
         
 
       }
-      if(chats[j].sender==2) {
-
-        var task = { 
-          name:"Tarush", 
-          room_number:50, 
-          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
-          additional_comments:"Sup",
-          date_time:"07:46 PM 23/02/2018"
-        };
-
-        var chat_timestamp = chats[j].datetime;
-        var myDate = new Date(chat_timestamp);
-        var formatedTime=myDate.toJSON();
-          
-        var chat_time = formatedTime.substring(11,16);
-        var chat_day = formatedTime.substring(8,10);
-        var chat_month = formatedTime.substring(5,7);
-
-        document.getElementById("tasks").innerHTML += `
-        <div class="task col-sm-10 col-sm-offset-1">
-            <div class="row task-body col-sm-10 col-sm-offset-1">
-                <div class="task-room">
-                  ` + task.room_number + `            
-                </div>
-                <div class="task-request">
-                ` + task.request + `
-                </div>
-                <div class="task-time">
-                `+ chat_day + '/' + chat_month + ' ' + `<b>` + chat_time +`</b>
-                </div>
-            </div>
-            <div class="row col-sm-2 col-sm-offset-1 text-center done" style="border: solid; margin-top: 5px;" onclick="markDone('`+task.request+`','`+chat_timestamp+`','`+ j +`','` + done_id + `')">
-              Mark as Done
-            </div>
-            <div class="row col-sm-2 incompleted-task" style="margin-right: 5px; float:right;">
-              Incomplete
-            </div>
-        </div>
-        `;
-      }
-      
     }
-
   }
-  if(document.getElementById("tasks").innerHTML === '')
-  {
+
+  if(document.getElementById("tasks").innerHTML === '') {
     document.getElementById("tasks").innerHTML = '<center><b>No Tasks!</b></center>';
   }
+  
 }
 
 function loadComplete() {
 
-  console.log("all");
+  $('#tasks').removeClass('animated fadeIn');
+  $('#tasks').addClass('animated fadeIn');
+  
+  console.log("completes");
   document.getElementById("tasks").innerHTML = ``;
 
   $('.choice-selected').removeClass('choice-selected');
@@ -679,16 +691,16 @@ function loadComplete() {
    
       if(chats[j].sender==3) {
 
-        console.log(chats[j]);
+        
 
         var task = { 
           name:"Tarush", 
-          room_number:50, 
-          request:"Shampoo Quantity : 1 , Name : Towel Quantity : 0 , Name : Hair dryer Quantity : 1 , Name : Spoon Quantity : 0 ,",
+          room_number: user_details.room_number, 
+          request:chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
         };
-
+        console.log(task.request);
         var chat_timestamp = chats[j].datetime;
         var myDate = new Date(chat_timestamp);
         var formatedTime=myDate.toJSON();
@@ -697,8 +709,6 @@ function loadComplete() {
         var chat_day = formatedTime.substring(8,10);
         var chat_month = formatedTime.substring(5,7);
 
-        console.log("hello?");
-      
         
         document.getElementById("tasks").innerHTML += `
         <div class="task col-sm-10 col-sm-offset-1">          
@@ -727,5 +737,5 @@ function loadComplete() {
   {
     document.getElementById("tasks").innerHTML = '<center><b>No Tasks!</b></center>';
   }
-
+  // $('#tasks').removeClass('animated fadeIn');
 }

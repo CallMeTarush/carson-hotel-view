@@ -145,7 +145,7 @@ function addRoom() {
             success: function (data, textStatus, xhr) {
               
                 console.log("Posted!");
-                $("table tbody").remove(); 
+                closeOverlay();
                 getRooms();
               
             },
