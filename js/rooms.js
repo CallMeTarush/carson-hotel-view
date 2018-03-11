@@ -24,7 +24,7 @@ $(document).ready(function(){
 });
 
 function getRooms() {
-    
+    $("table tbody div").remove();
     $.get("http://139.59.13.33:8383/hotel/view_rooms",function(data,status) {
         
         rooms = data.rooms;        
@@ -68,7 +68,7 @@ function deleteRoom(click_index){
         success: function(result) { 
 
             console.log("lmao");
-            $("table tbody div").remove(); 
+            $("table tbody").remove(); 
             getRooms(); 
             
         },
