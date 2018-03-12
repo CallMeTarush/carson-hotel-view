@@ -36,7 +36,7 @@ function getFeedback() {
             
             if(checker<=7) {
                 sum=0;
-
+                document.getElementById("rno").innerHTML = feedbackResponse.room;
                 console.log(feedbackResponse[j]);
                 for (x in feedbackResponse[j].ratings) {
                     sum+=Number(feedbackResponse[j].ratings[x].rating);
