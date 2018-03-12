@@ -103,7 +103,7 @@ function loadTable(user_id) {
     
     for(const j of Object.keys(feedbackResponse)) {
         console.log(j);
-        for(var counter=0; counter < feedbackResponse[j].ratings.length; ++counter) {
+        for(var counter=0; counter < 7; ++counter) {
             console.log(feedbackResponse[j].ratings[counter]);
             document.getElementById("table-2").innerHTML+=`
             <tr>
