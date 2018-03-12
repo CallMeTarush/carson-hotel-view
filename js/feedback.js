@@ -105,6 +105,7 @@ function loadTable(user_id) {
         console.log(j);
         for(var counter=0; counter < 7; ++counter) {
             console.log(feedbackResponse[j].ratings[counter]);
+            console.log("updated");
             document.getElementById("table-2").innerHTML+=`
             <tr>
                 <td>`+feedbackResponse[j].ratings[counter].question+`</td>
