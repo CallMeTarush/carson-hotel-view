@@ -2,10 +2,6 @@ window.width = $(window).width();
 
 $(document).ready(function() {
     
-  
-    
-      
-
       $('.grow').css("transform","scale(1.2)");
 
       setTimeout(function(){ 
@@ -23,7 +19,6 @@ $(document).ready(function() {
       setTimeout(function(){ 
         $('.grow').css("transform","scale(1.2)");
       }, 2000);
-
     
 });
 
@@ -45,10 +40,24 @@ function init() {
 
 
   hotelDatabase.once('value').then(function(snapshot) {
-
     
     document.getElementById("roomNumbers").innerHTML='';
     document.getElementById("conversation").innerHTML='';
+
+    document.getElementById("roomNumbers").innerHTML+=`
+      <div class="row sideBar-body" onClick="loadOverlay()" id="chat-selected-0">          
+        <div class="col-sm-9 col-xs-9 sideBar-main">
+          <div class="row">
+            <div class="col-sm-8 col-xs-8 sideBar-name">
+              <span class="name-meta">
+                <b>All chat</b>
+              </span>
+            </div>
+            
+          </div>
+        </div>
+      </div>`;
+    
 
     snap = snapshot.val();
     user_id_list = snap.user_list;
@@ -115,6 +124,7 @@ function loadChat(counter_details) {
   else {
     $('.selected').removeClass('selected');
     $('#chat-selected-'+ counter_details).addClass('selected');
+
   }
   if($('#chat-selected-'+ counter_details).hasClass("new")) {
     $("#chat-selected-"+ counter_details).removeClass("new");
@@ -126,6 +136,7 @@ function loadChat(counter_details) {
 
     document.getElementById("conversation").innerHTML='';
     
+
     x = snap.user_list[counter_details];
     
     current = x;
@@ -136,10 +147,10 @@ function loadChat(counter_details) {
     document.getElementById("display-room").innerHTML=user_details.room_number;
 
     for (const j of Object.keys(chats)) {
-   
+  
       var chat_timestamp = chats[j].datetime;
       addMessageText(chats[j].message,chat_timestamp,chats[j].sender);      
-   
+  
     }
 
   
@@ -211,10 +222,13 @@ function addMessageText(message,timestamp,sender) {
     }
 }
 
-function sendMessage() {
+function loadOverlay() {
 
-  
-  
+  $('#allchat').fadeIn();
+  $('.app').css("opacity","0.1");
+}
+
+function sendMessage() {
 
   var date = firebase.database.ServerValue.TIMESTAMP;
   var message_send = document.getElementById("comment").value;
@@ -245,6 +259,49 @@ function sendMessage() {
     }
     document.getElementById("comment").value = "";
     scrollDown();
+  }
+
+  checker += 1;
+
+}
+
+function sendMessageAll() {
+  var date = firebase.database.ServerValue.TIMESTAMP;
+  var message_send = document.getElementById("comment").value;
+  
+  if (message_send=="" || message_send==undefined) {
+    alert("Please enter a message!");
+  }
+
+  else {
+
+    var msgObject = { datetime: date, message: message_send, sender: 1};
+    
+
+    for (var i = len-1 ; i >= 0 ; i--) {
+      
+      console.log(snap.user_list[i]);
+      firebase.database().ref('/hotel/1/'+ snap.user_list[i] +'/chats/reception/').push(msgObject);  
+    }
+    
+
+    user_details_reload = snap[current];
+    chats= user_details_reload.chats.reception;
+
+    
+    document.getElementById("conversation").innerHTML='';
+    // console.log(chats);
+
+    for (const j of Object.keys(chats)) {
+
+      // console.log(chats[j].message);
+      var chat_timestamp = chats[j].datetime;
+      addMessageText(chats[j].message,chat_timestamp,chats[j].sender);
+
+    }
+    document.getElementById("comment").value = "";
+    scrollDown();
+
   }
 
   checker += 1;
@@ -423,6 +480,20 @@ function checkEnter() {
   }
 
 }
+
+function checkEnterAll() {
+  var key = window.event.keyCode;
+
+  if (key === 13) {
+      sendMessageAll();
+      return false;
+  }
+  else {
+      return true;
+  }
+
+}
+
 
 function loadTasks(user_details) {
   console.log("sup?");
