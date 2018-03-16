@@ -14,7 +14,12 @@
     z-index: 800; /* Specify a stack order in case you're using a different order for other elements */
 
 }
-
+thead {
+    border: solid !important;
+}
+tbody {
+    border: solid !important;
+}
 .loader img {
     position: absolute; /* Sit on top of the page content */
 

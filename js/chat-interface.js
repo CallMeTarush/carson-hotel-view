@@ -302,6 +302,8 @@ function sendMessageAll() {
     document.getElementById("comment").value = "";
     scrollDown();
 
+    $('#allchat').fadeOut();
+    $('.app').css("opacity","1");
   }
 
   checker += 1;
