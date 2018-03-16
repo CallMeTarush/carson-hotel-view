@@ -34,3 +34,6 @@
     bottom: 0;    
 }
   
+tr:hover {
+    background: black;
+}

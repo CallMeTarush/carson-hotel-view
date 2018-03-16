@@ -1,4 +1,4 @@
-var rooms; 
+    var rooms; 
 
 $(document).ready(function(){
     getRooms();   
@@ -33,9 +33,9 @@ function getRooms() {
             
             var index = i;
             var roomno = rooms[i].room;
-            var markup = "<tr><td>" + ((index) + (1)) + "</td><td>" + roomno + "</td><td class='text-right'><button onClick='deleteRoom(`" + rooms[i].key + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+            var markup = "<tr ><td onclick='openRoomDetails(" + i + ")' >" + ((index) + (1)) + "</td><td onclick='openRoomDetails(" + i + ")' >" + roomno + "</td><td class='text-right'><button onClick='deleteRoom(`" + rooms[i].key + "`)'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
             
-            $("table tbody").append(markup);
+            $("#roomTable").append(markup);
     
         }        
 
@@ -48,6 +48,23 @@ function getRooms() {
     
 }
 
+function closeOverlay() {
+    $('#roomDeets').css("display","none");
+}
+
+function openRoomDetails(i) {
+    
+    console.log(rooms[i]);
+    $('#roomDeets').css("display","block");
+
+
+    var roomno = rooms[i].room;
+    var markup = "<tr><td>" + rooms[i].key + "</td><td>" + rooms[i].room + "</td><td>" + rooms[i].name + "</td><td>" + rooms[i].mobile + "</td></tr>";
+    
+    $("#big-table-3").append(markup);
+
+}
+
 function deleteRoom(click_index){
     var roomObj = new Object();
 
@@ -58,7 +75,7 @@ function deleteRoom(click_index){
     roomObj = JSON.stringify(roomObj);
     console.log(roomObj);
 
-    alert("Are you sure?");
+    
     
     $.ajax({
         url: 'http://139.59.13.33:8383/hotel/delete_key',
@@ -68,8 +85,12 @@ function deleteRoom(click_index){
         success: function(result) { 
 
             console.log("lmao");
-            document.location.reload(); 
+            $("#roomTable").remove(); 
+            getRooms(); 
             
+
+            setTimeout(function(){  document.location.reload(); }, 1000);
+
         },
         error: function(result){ alert("error!") }
     });
@@ -82,18 +103,8 @@ function checkin() {
 function addRoom() {
 
     var roomNumber = document.getElementById("roomnumber").value;
-    console.log(roomNumber);
     var mobile = document.getElementById("mobile").value;
-    console.log(mobile);
     var name = document.getElementById("name").value;
-    console.log(name);
-
-    var data_to_send = { 
-        'room': roomNumber,
-        'mobile': mobile,
-        'name': name
-    };
-    
     var roomObj = new Object();
 
     roomObj.room = roomNumber;
@@ -116,7 +127,8 @@ function addRoom() {
             success: function (data, textStatus, xhr) {
               
                 console.log("Posted!");
-                document.location.reload();
+                $("table tbody").remove(); 
+                getRooms();
               
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -126,7 +138,6 @@ function addRoom() {
             }
     });
 
-    console.log("dksao");
 }
 
 
@@ -142,7 +153,7 @@ function loadOverlay() {
 function closeOverlay() {
 
     console.log("close");
-    // document.location.reload();
+    
     $('#overlay').addClass("animated fadeOut");
 
 }
