@@ -17,6 +17,38 @@
 
 <body>
     
+    <div id="roomDeets">
+
+
+        <button onClick='deleteRoom(`" + rooms[i].key + "`)' class="text-right"><span class='glyphicon glyphicon-remove-circle'></span></button>
+
+        <div class="table-container col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top:10vh;">            
+
+            
+            <table class="col-sm-12 animated fadeIn" id="big-table-3">
+                <thead>
+                    <tr style="width: 100%;">
+                        <th>
+                            Key
+                        </th>                        
+                        <th>
+                            Room
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Mobile
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-3`" >
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="loader">
         <img src="../img/logofinal.png" style="width: 25%; height:auto;">
     </div>
@@ -83,7 +115,7 @@
 
         <div class="col-md-6 col-md-offset-3 col-xs-12" style="margin-top:5vh">
             <div class="table-responsive">
-                <table class="table" >
+                <table class="table" id="roomTable" >
 
                     <thead>
                         <tr>

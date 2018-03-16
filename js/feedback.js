@@ -29,32 +29,40 @@ function getFeedback() {
         
         console.log(data);
         feedbackResponse = data;
+        var checker=0;
         for (const j of Object.keys(feedbackResponse)) {
             
-            sum=0;
+            checker++;
+            
+            if(checker<=7) {
+                sum=0;
+                document.getElementById("rno").innerHTML = feedbackResponse.room;
+                console.log(feedbackResponse[j]);
+                for (x in feedbackResponse[j].ratings) {
+                    sum+=Number(feedbackResponse[j].ratings[x].rating);
+                }
+                console.log(sum);
+                average = sum/feedbackResponse[j].ratings.length;
+                average = average.toFixed(1);
+                console.log(average);
 
-            console.log(feedbackResponse[j]);
-            for (x in feedbackResponse[j].ratings) {
-                sum+=Number(feedbackResponse[j].ratings[x].rating);
+                document.getElementById("table").innerHTML+=`
+                <tr onclick="loadOverlay(` + feedbackResponse[j].user + `)" >
+                    <td>
+                    ` + feedbackResponse[j].room + `
+                    </td>
+                    <td>
+                    ` + feedbackResponse[j].comment + `
+                    </td>
+                    <td>
+                    ` + average + `
+                    </td>
+                </tr>
+                `
             }
-            console.log(sum);
-            average = sum/feedbackResponse[j].ratings.length;
-            average = average.toFixed(1);
-            console.log(average);
-
-            document.getElementById("table").innerHTML+=`
-            <tr onclick="loadOverlay(` + feedbackResponse[j].user + `)" >
-                <td>
-                ` + feedbackResponse[j].room + `
-                </td>
-                <td>
-                ` + feedbackResponse[j].comment + `
-                </td>
-                <td>
-                ` + average + `
-                </td>
-            </tr>
-            `
+            else {
+                console.log("done lolz");
+            }
         }
 
         setTimeout(function(){
@@ -95,8 +103,9 @@ function loadTable(user_id) {
     
     for(const j of Object.keys(feedbackResponse)) {
         console.log(j);
-        for(var counter=0; counter < feedbackResponse[j].ratings.length; ++counter) {
+        for(var counter=0; counter < 7; ++counter) {
             console.log(feedbackResponse[j].ratings[counter]);
+            console.log("updated");
             document.getElementById("table-2").innerHTML+=`
             <tr>
                 <td>`+feedbackResponse[j].ratings[counter].question+`</td>
