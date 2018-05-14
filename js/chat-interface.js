@@ -33,7 +33,7 @@ $(window).on('load', function () {
   init();
   
 });
-
+var user_details;
 
 function init() {
   
@@ -62,29 +62,32 @@ function init() {
     snap = snapshot.val();
     user_id_list = snap.user_list;
     len = user_id_list.length;
+    
+    for (var i in user_id_list) {
+      console.log(i);
+      console.log(len,i);
 
-    for (var i = len-1 ; i >= 0 ; i--) {
-        
       x = snap.user_list[i];
-      user_details = snap[x];
+      var user_details = snap[x];
       chats = user_details.chats.reception;
-      
+      console.log(user_details);
+      console.log(len,i);
       document.getElementById("roomNumbers").innerHTML+=`
       <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
         <div class="col-sm-9 col-xs-9 sideBar-main">
           <div class="row">
             <div class="col-sm-8 col-xs-8 sideBar-name">
               <span class="name-meta">
-                ` + user_details.room_number + `
+                ` + user_details.room + `
               </span>
             </div>
             
           </div>
         </div>
       </div>`;
-      
+      console.log("added",user_details.room);
       loadTasks(user_details);
-
+      console.log(len,i);
       done_id = x;
 
       
@@ -98,7 +101,6 @@ function init() {
     }
       $('#chat-selected-1').addClass('check-selected');
     }
-
     loadChat(len-1);
     loadIncomplete();
 
@@ -143,8 +145,8 @@ function loadChat(counter_details) {
     user_details = snap[x];
     chats = user_details.chats.reception;
     
-    // console.log(user_details.room_number);
-    document.getElementById("display-room").innerHTML=user_details.room_number;
+    // console.log(user_details.room);
+    document.getElementById("display-room").innerHTML=user_details.room;
 
     for (const j of Object.keys(chats)) {
   
@@ -379,8 +381,8 @@ function backPressed() {
       user_details = snap[x];
       chats = user_details.chats.reception;
       
-      console.log(user_details.room_number);
-      document.getElementById("display-room").innerHTML=user_details.room_number;
+      console.log(user_details.room);
+      document.getElementById("display-room").innerHTML=user_details.room;
 
       for (const j of Object.keys(chats)) {
     
@@ -413,14 +415,14 @@ function backPressed() {
       console.log(chats);
 
       if(!(_.isEqual(chats, chats_old))) {
-        // console.log(user_details.room_number);  
+        // console.log(user_details.room);  
         document.getElementById("roomNumbers").innerHTML+=`
         <div class="row sideBar-body new" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
           <div class="col-sm-9 col-xs-9 sideBar-main">
             <div class="row">
               <div class="col-sm-8 col-xs-8 sideBar-name">
                 <span class="name-meta">
-                  ` + user_details.room_number + `
+                  ` + user_details.room + `
                 </span>
               </div>      
             </div>
@@ -447,14 +449,14 @@ function backPressed() {
       chats_old = user_details_old.chats.reception;
       
       if(_.isEqual(chats, chats_old)) {
-        // console.log(user_details.room_number);  
+        // console.log(user_details.room);  
         document.getElementById("roomNumbers").innerHTML+=`
         <div class="row sideBar-body" onClick="loadChat(`+i+`)" id="chat-selected-` + i +`">          
           <div class="col-sm-9 col-xs-9 sideBar-main">
             <div class="row">
               <div class="col-sm-8 col-xs-8 sideBar-name">
                 <span class="name-meta">
-                  ` + user_details.room_number + `
+                  ` + user_details.room + `
                 </span>
               </div>
               
@@ -564,7 +566,7 @@ function loadIncomplete() {
         console.log("k" + JSON.stringify(chats[j]));
         var task = { 
           name:"Tarush", 
-          room_number: user_details.room_number, 
+          room: user_details.room, 
           request: chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
@@ -582,7 +584,7 @@ function loadIncomplete() {
         <div class="task col-sm-10 col-sm-offset-1">
             <div class="row task-body col-sm-10 col-sm-offset-1">
                 <div class="task-room">
-                  ` + task.room_number + `            
+                  ` + task.room + `            
                 </div>
                 <div class="task-request">
                 ` + task.request + `
@@ -639,7 +641,7 @@ function loadAll() {
 
         var task = { 
           name:"Tarush", 
-          room_number: user_details.room_number, 
+          room: user_details.room, 
           request:chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
@@ -657,7 +659,7 @@ function loadAll() {
         <div class="task col-sm-10 col-sm-offset-1">
             <div class="row task-body col-sm-10 col-sm-offset-1">
                 <div class="task-room">
-                  ` + task.room_number + `            
+                  ` + task.room + `            
                 </div>
                 <div class="task-request">
                 ` + task.request + `
@@ -682,7 +684,7 @@ function loadAll() {
 
         var task = { 
           name:"Tarush", 
-          room_number: user_details.room_number, 
+          room: user_details.room, 
           request:chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
@@ -707,7 +709,7 @@ function loadAll() {
             <div class="row task-body col-sm-10 col-sm-offset-1">
               
                 <div class="task-room">
-                  ` + task.room_number + `            
+                  ` + task.room + `            
                 </div>
 
                 <div class="task-request">
@@ -768,7 +770,7 @@ function loadComplete() {
 
         var task = { 
           name:"Tarush", 
-          room_number: user_details.room_number, 
+          room: user_details.room, 
           request:chats[j].message,
           additional_comments:"Sup",
           date_time:"07:46 PM 23/02/2018"
@@ -787,7 +789,7 @@ function loadComplete() {
         <div class="task col-sm-10 col-sm-offset-1">          
             <div class="row task-body col-sm-10 col-sm-offset-1">              
                 <div class="task-room">
-                  ` + task.room_number + `            
+                  ` + task.room + `            
                 </div>
                 <div class="task-request">
                 ` + task.request + `
